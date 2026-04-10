@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+vars:
+  APIPATH: ./api/src/Portfolio.Api
+
+tasks:
+  default:
+    desc: Print a greeting message
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  api: 
+    desc: Run api
+    cmds: 
+      - dotnet run --project {{.APIPATH}}
+    silent: true
+
+  
+  
+
+
