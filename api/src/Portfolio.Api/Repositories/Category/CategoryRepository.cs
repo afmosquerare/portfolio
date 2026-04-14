@@ -18,7 +18,6 @@ public class CategoryRepository(PortfolioDbContext context) : ICategoryRepositor
     public async Task DeleteAsync(int id)
     {
         await context.Categories.Where(c => c.Id == id).ExecuteDeleteAsync();
-        await context.SaveChangesAsync();
     }
     public async Task<IEnumerable<Category>> GetAllAsync()
     {

@@ -2,7 +2,9 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Portfolio.Api.Repositories;
 using Portfolio.Api.Repositories.Interfaces;
+using Portfolio.Api.Repositories.Projects;
 using Portfolio.Api.Services.Interfaces;
+using Portfolio.Api.Services.Projects;
 
 namespace Portfolio.Api.Extensions;
 
@@ -12,6 +14,9 @@ public static class DependencyInjections
     {
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+        services.AddScoped<IProjectRepository, ProjectRepository>();
+        services.AddScoped<IProjectService, ProjectService>();
         return services;
     }
 
