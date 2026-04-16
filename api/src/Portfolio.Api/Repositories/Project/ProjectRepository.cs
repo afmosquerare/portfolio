@@ -19,7 +19,7 @@ public class ProjectRepository(PortfolioDbContext context) : IProjectRepository
 
     public async Task<IEnumerable<Project>> GetAllAsync()
     {
-        return await context.Projects.ToListAsync();
+        return await context.Projects.OrderByDescending( p => p.Order). ToListAsync();
     }
     public async Task<Project?> GetByIdAsync(int id)
     {
