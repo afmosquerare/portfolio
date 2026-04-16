@@ -4,7 +4,7 @@ using Portfolio.Api.DTOs.Project;
 using Portfolio.Api.Services.Projects;
 
 [ApiController]
-[Route("/api/projects")]
+[Route("api/projects")]
 public class ProjectController(IProjectService service) : ApiController
 {
 
