@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,13 +34,14 @@ public class ApiController : ControllerBase
         );
     }
 
-    protected IActionResult handleCreatedResult<T>(ErrorOr<T> result)
+    protected IActionResult HandleAuthResult<T>(ErrorOr<T> result)
     {
-        return result.Match(
-            value => NoContent(),
-            errors => Problem(errors)
+        return result.Match<IActionResult>(
+            token => Ok( new { token}),
+            errors => Unauthorized()
         );
     }
+
 
 
 }

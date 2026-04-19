@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Api.DTOs.Technology;
 using Portfolio.Api.Services.Technologies;
@@ -5,14 +6,17 @@ using Portfolio.Api.Services.Technologies;
 namespace Portfolio.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/technologies")]
 public class TechnologyController(ITechnologyService service) : ApiController
 {
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll([FromQuery] int? categoryId)
         => HandleResult( await service.GetAllAsync( categoryId ));
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetById(int id)
         => HandleResult(await service.GetByIdAsync(id));
 

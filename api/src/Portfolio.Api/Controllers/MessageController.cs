@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Api.DTOs.Message;
 using Portfolio.Api.Services.Messages;
@@ -5,9 +6,12 @@ using Portfolio.Api.Services.Messages;
 namespace Portfolio.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/messages")]
 public class MessageController(IMessageService service) : ApiController
 {
+
+    
     [HttpGet]
     public async Task<IActionResult> GetAll()
         => HandleResult(await service.GetAllAsync());
@@ -21,6 +25,7 @@ public class MessageController(IMessageService service) : ApiController
         => HandleResult(await service.GetByIdAsync(id));
 
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> Create([FromBody] CreateMessageRequest req)
         => HandleResult(await service.AddAsync(req));
 

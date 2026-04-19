@@ -1,4 +1,5 @@
 using ErrorOr;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Api.DTOs.Category;
 using Portfolio.Api.Services.Interfaces;
@@ -6,13 +7,16 @@ using Portfolio.Api.Services.Interfaces;
 namespace Portfolio.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/categories")]
 public class CategoryController(ICategoryService service) : ApiController
 {
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> GetAll()
         => HandleResult(await service.GetAllAsync());
 
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
         => HandleResult(await service.GetByIdAsync(id));

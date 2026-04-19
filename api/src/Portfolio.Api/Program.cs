@@ -8,6 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 builder.Services.AddFluentValidation();
+builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddDbContext<PortfolioDbContext>(options =>
 {
    options.UseSqlServer( builder.Configuration["ConnectionStrings:Default"]  ); 
@@ -25,7 +26,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+app.UseAuthentication(); 
+app.UseAuthorization();  
 app.MapControllers();
 
+
+using ( var scope = app.Services.CreateScope())
+{
+    var repositoy = scope.ServiceProvider.GetRequiredService<IUserRepository>();
+    var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+    await DbSeeder.SeedAsync(repositoy, config);
+    
+}
 app.Run();
 

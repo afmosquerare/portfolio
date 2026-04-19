@@ -9,6 +9,10 @@ using Portfolio.Api.Services.Interfaces;
 using Portfolio.Api.Services.Projects;
 using Portfolio.Api.Services.Technologies;
 using Portfolio.Api.Services.Messages;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Portfolio.Api.Services.Auth;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Portfolio.Api.Extensions;
 
@@ -27,6 +31,9 @@ public static class DependencyInjections
 
         services.AddScoped<IMessageRepository, MessageRepository>();
         services.AddScoped<IMessageService, MessageService>();
+
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IAuthService, AuthService>();
         return services;
     }
 
@@ -34,6 +41,28 @@ public static class DependencyInjections
     {
         services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining<Program>();
+        return services;
+    }
+
+    public static IServiceCollection AddJwtAuthentication( this IServiceCollection services, IConfiguration config)
+    {
+        services.AddScoped<JwtService>();
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = config["JwtSettings:Issuer"],
+            ValidAudience = config["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(config["JwtSettings:Secret"]!))
+        };
+        });
+
         return services;
     }
 

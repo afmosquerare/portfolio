@@ -1,16 +1,20 @@
 using ErrorOr;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Api.DTOs.Project;
 using Portfolio.Api.Services.Projects;
 
 [ApiController]
+[Authorize]
 [Route("api/projects")]
 public class ProjectController(IProjectService service) : ApiController
 {
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
         => HandleResult(await service.GetByIdAsync(id));
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] int? technologyId)
         => HandleResult(await service.GetAllAsync(technologyId));
