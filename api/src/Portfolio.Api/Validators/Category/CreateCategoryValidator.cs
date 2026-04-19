@@ -8,6 +8,6 @@ public class CreateCategoryValidator : AbstractValidator<CreateCategoryRequest>
         RuleFor(c => c.Name).NotEmpty();
         RuleFor(c => c.IconUrl)
         .Must(url => Uri.TryCreate(url, UriKind.Absolute, out _))
-        .When(url => url is not null);
+        .When(c => c.IconUrl is not null);
     }
 }

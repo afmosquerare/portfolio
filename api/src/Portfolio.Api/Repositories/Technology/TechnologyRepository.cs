@@ -47,4 +47,21 @@ public class TechnologyRepository(PortfolioDbContext context) : ITechnologyRepos
         await context.SaveChangesAsync();
         return technology;
     }
+
+    public async Task<Technology?> GetByIdWithProjectsAsync(int id)
+    {
+        return await context.Technologies
+            .Include(t => t.ProjectTechnologies)
+                .ThenInclude(pt => pt.Project)
+            .FirstOrDefaultAsync(t => t.Id == id);
+    }
+    
+
+    public async Task<ICollection<Technology>> GetTechnologiesByProjectIdAsync(int projectId)
+    {
+        return await context.Technologies
+            .Where(t => t.ProjectTechnologies.Any(pt => pt.ProjectId == projectId))
+            .ToListAsync();
+    }
+
 }

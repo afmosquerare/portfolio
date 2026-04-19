@@ -19,9 +19,20 @@ public class ProjectController(IProjectService service) : ApiController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] int? technologyId)
     {
-        var result = await service.GetAllAsync();
+        var result = await service.GetAllAsync(technologyId);
+        return result.Match(
+            projects => Ok(projects),
+            errors => Problem(errors)
+        );
+    }
+
+    [HttpPost("{projectId}/technologies/{technologyId}")]
+    public async Task<IActionResult> AddTechnology(int projectId, int technologyId)
+    {
+
+        var result = await service.AddTechnologyAsync(projectId, technologyId);
         return result.Match(
             projects => Ok(projects),
             errors => Problem(errors)

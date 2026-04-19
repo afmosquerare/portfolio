@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Portfolio.Api.Migrations
 {
     [DbContext(typeof(PortfolioDbContext))]
-    partial class PortfolioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260418164110_remove-projecttechnologies")]
+    partial class removeprojecttechnologies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,17 +189,17 @@ namespace Portfolio.Api.Migrations
 
             modelBuilder.Entity("ProjectTechnology", b =>
                 {
-                    b.Property<int>("TechnologyId")
+                    b.Property<int>("ProjectsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("TechnologiesId")
                         .HasColumnType("int");
 
-                    b.HasKey("TechnologyId", "ProjectId");
+                    b.HasKey("ProjectsId", "TechnologiesId");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("TechnologiesId");
 
-                    b.ToTable("ProjectTechnologies");
+                    b.ToTable("ProjectTechnology");
                 });
 
             modelBuilder.Entity("Portfolio.Api.Models.Technology", b =>
@@ -212,36 +215,22 @@ namespace Portfolio.Api.Migrations
 
             modelBuilder.Entity("ProjectTechnology", b =>
                 {
-                    b.HasOne("Portfolio.Api.Models.Project", "Project")
-                        .WithMany("ProjectTechnologies")
-                        .HasForeignKey("ProjectId")
+                    b.HasOne("Portfolio.Api.Models.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Portfolio.Api.Models.Technology", "Technology")
-                        .WithMany("ProjectTechnologies")
-                        .HasForeignKey("TechnologyId")
+                    b.HasOne("Portfolio.Api.Models.Technology", null)
+                        .WithMany()
+                        .HasForeignKey("TechnologiesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Project");
-
-                    b.Navigation("Technology");
                 });
 
             modelBuilder.Entity("Portfolio.Api.Models.Category", b =>
                 {
                     b.Navigation("Technologies");
-                });
-
-            modelBuilder.Entity("Portfolio.Api.Models.Project", b =>
-                {
-                    b.Navigation("ProjectTechnologies");
-                });
-
-            modelBuilder.Entity("Portfolio.Api.Models.Technology", b =>
-                {
-                    b.Navigation("ProjectTechnologies");
                 });
 #pragma warning restore 612, 618
         }

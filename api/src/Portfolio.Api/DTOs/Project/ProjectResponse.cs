@@ -1,3 +1,6 @@
+using Portfolio.Api.DTOs.Technology;
+using Portfolio.Api.Models;
+
 namespace Portfolio.Api.DTOs.Project;
 
 public record ProjectResponse
@@ -14,7 +17,9 @@ public record ProjectResponse
 
     public bool IsVisible {get;set;}
 
-    public DateTime CreateAt;
+    public DateTime CreatedAt {get; set;}
+
+    public ICollection<TechnologyResponse> Technologies {get; set;} = [];
 
 
 }

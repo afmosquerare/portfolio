@@ -10,4 +10,8 @@ public interface ITechnologyRepository
     Task<Technology> UpdateAsync(Technology technology);
     Task DeleteAsync(int id);
     Task<IEnumerable<Technology>> GetByCategoryAsync(int categoryId);
+
+    Task<Technology?> GetByIdWithProjectsAsync(int id);
+
+    Task<ICollection<Technology>> GetTechnologiesByProjectIdAsync(int projectId);
 }

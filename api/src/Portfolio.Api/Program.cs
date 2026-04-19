@@ -15,8 +15,7 @@ builder.Services.AddDbContext<PortfolioDbContext>(options =>
 
 builder.Services.AddControllers();
 
-
-TypeAdapterConfig.GlobalSettings.Default.IgnoreNullValues(true);
+MappingConfig.Configure();
 
 var app = builder.Build();
 
