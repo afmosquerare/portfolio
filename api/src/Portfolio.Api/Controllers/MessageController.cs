@@ -1,4 +1,3 @@
-using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Api.DTOs.Message;
 using Portfolio.Api.Services.Messages;
@@ -11,61 +10,25 @@ public class MessageController(IMessageService service) : ApiController
 {
     [HttpGet]
     public async Task<IActionResult> GetAll()
-    {
-        var result = await service.GetAllAsync();
-        return result.Match(
-            messages => Ok(messages),
-            errors => Problem(errors)
-        );
-    }
+        => HandleResult(await service.GetAllAsync());
 
     [HttpGet("unread")]
     public async Task<IActionResult> GetUnread()
-    {
-        var result = await service.GetUnreadAsync();
-        return result.Match(
-            messages => Ok(messages),
-            errors => Problem(errors)
-        );
-    }
+        => HandleResult(await service.GetUnreadAsync());
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
-    {
-        var result = await service.GetByIdAsync(id);
-        return result.Match(
-            message => Ok(message),
-            errors => Problem(errors)
-        );
-    }
+        => HandleResult(await service.GetByIdAsync(id));
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreateMessageRequest req)
-    {
-        var result = await service.AddAsync(req);
-        return result.Match(
-            message => Ok(message),
-            errors => Problem(errors)
-        );
-    }
+    public async Task<IActionResult> Create([FromBody] CreateMessageRequest req)
+        => HandleResult(await service.AddAsync(req));
 
     [HttpPatch("{id}")]
-    public async Task<IActionResult> Update(int id, UpdateMessageRequest req)
-    {
-        var result = await service.UpdateAsync(id, req);
-        return result.Match(
-            message => Ok(message),
-            errors => Problem(errors)
-        );
-    }
+    public async Task<IActionResult> Update(int id, [FromBody] UpdateMessageRequest req)
+        => HandleResult(await service.UpdateAsync(id, req));
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
-    {
-        var result = await service.DeleteAsync(id);
-        return result.Match(
-            deleted => NoContent(),
-            errors => Problem(errors)
-        );
-    }
+        => HandleDeletedResult(await service.DeleteAsync(id));
 }

@@ -32,17 +32,12 @@ public class TechnologyService(ITechnologyRepository technologyRepository, ICate
         return Result.Deleted;
     }
 
-    public async Task<ErrorOr<IEnumerable<TechnologyResponse>>> GetAllAsync()
+    public async Task<ErrorOr<IEnumerable<TechnologyResponse>>> GetAllAsync(int? categoryId)
     {
-        var technologies = await technologyRepository.GetAllAsync();
+        var technologies = await technologyRepository.GetAllAsync(categoryId);
         return technologies.Adapt<List<TechnologyResponse>>();
     }
 
-    public async Task<ErrorOr<IEnumerable<TechnologyResponse>>> GetByCategoryAsync(int categoryId)
-    {
-        var technologies = await technologyRepository.GetByCategoryAsync(categoryId);
-        return technologies.Adapt<List<TechnologyResponse>>();
-    }
 
     public async Task<ErrorOr<TechnologyResponse>> GetByIdAsync(int id)
     {

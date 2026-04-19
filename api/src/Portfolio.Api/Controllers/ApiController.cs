@@ -16,4 +16,30 @@ public class ApiController : ControllerBase
         };
         return Problem(statusCode: statusCode, detail: firstError.Description);
     }
+
+    protected IActionResult HandleResult<T>(ErrorOr<T> result)
+    {
+        return result.Match(
+            value => Ok(value),
+            errors => Problem(errors)
+        );
+    }
+
+    protected IActionResult HandleDeletedResult<T>(ErrorOr<T> result)
+    {
+        return result.Match(
+            value => NoContent(),
+            errors => Problem(errors)
+        );
+    }
+
+    protected IActionResult handleCreatedResult<T>(ErrorOr<T> result)
+    {
+        return result.Match(
+            value => NoContent(),
+            errors => Problem(errors)
+        );
+    }
+
+
 }

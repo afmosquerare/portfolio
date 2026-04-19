@@ -7,69 +7,27 @@ using Portfolio.Api.Services.Projects;
 [Route("api/projects")]
 public class ProjectController(IProjectService service) : ApiController
 {
-
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
-    {
-        var result = await service.GetByIdAsync(id);
-        return result.Match(
-            project => Ok(project),
-            errors => Problem(errors)
-        );
-    }
+        => HandleResult(await service.GetByIdAsync(id));
 
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] int? technologyId)
-    {
-        var result = await service.GetAllAsync(technologyId);
-        return result.Match(
-            projects => Ok(projects),
-            errors => Problem(errors)
-        );
-    }
+        => HandleResult(await service.GetAllAsync(technologyId));
 
     [HttpPost("{projectId}/technologies/{technologyId}")]
     public async Task<IActionResult> AddTechnology(int projectId, int technologyId)
-    {
-
-        var result = await service.AddTechnologyAsync(projectId, technologyId);
-        return result.Match(
-            projects => Ok(projects),
-            errors => Problem(errors)
-        );
-    }
+        => HandleResult(await service.AddTechnologyAsync(projectId, technologyId));
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateProjectRequest req)
-    {
-        var result = await service.AddAsync(req);
-        return result.Match(
-            project => Ok(project),
-            errors => Problem(errors)
-        );
-    }
+        => HandleResult(await service.AddAsync(req));
 
     [HttpPatch("{id}")]
     public async Task<IActionResult> Update(int id, UpdateProjectRequest req)
-    {
-        var result = await service.UpdateAsync(id, req);
-        return result.Match(
-            project => Ok(project),
-            errors => Problem(errors)
-        );
-    }
+        => HandleResult(await service.UpdateAsync(id, req));
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
-    {
-        var result = await service.DeleteAsync(id);
-        return result.Match(
-            deleted => NoContent(),
-            errors => Problem(errors)
-        );
-    }
-
-
-
-
+        => HandleDeletedResult(await service.DeleteAsync(id));
 }

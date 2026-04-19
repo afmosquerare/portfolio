@@ -18,21 +18,18 @@ public class TechnologyRepository(PortfolioDbContext context) : ITechnologyRepos
         await context.Technologies.Where(t => t.Id == id).ExecuteDeleteAsync();
     }
 
-    public async Task<IEnumerable<Technology>> GetAllAsync()
+    public async Task<IEnumerable<Technology>> GetAllAsync(int? categoryId)
     {
-        return await context.Technologies
-            .Include(t => t.Category)
-            .OrderBy(t => t.Name)
-            .ToListAsync();
+        var query = context.Technologies.Include(t=>t.Category).AsQueryable();
+
+        if (categoryId.HasValue)
+        {
+            query = query.Where( t => t.CategoryId == categoryId );
+        }
+
+        return await query.OrderBy(t => t.Name).ToListAsync();
     }
 
-    public async Task<IEnumerable<Technology>> GetByCategoryAsync(int categoryId)
-    {
-        return await context.Technologies
-            .Where(t => t.CategoryId == categoryId)
-            .OrderBy(t => t.Name)
-            .ToListAsync();
-    }
 
     public async Task<Technology?> GetByIdAsync(int id)
     {
