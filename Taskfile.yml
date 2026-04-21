@@ -4,19 +4,30 @@ version: '3'
 
 vars:
   APIPATH: ./api/src/Portfolio.Api
+  DASHPATH: ./apps/dash
+  WEBPATH: ./apps/web
 
 tasks:
-  default:
-    desc: Print a greeting message
-    cmds:
-      - echo "{{.GREETING}}"
-    silent: true
-
   api: 
     desc: Run api
     cmds: 
       - dotnet run --project {{.APIPATH}}
     silent: true
+  web:
+    desc: Run portfolio web
+    dir: "{{.WEBPATH}}"
+    cmds:
+      - ng serve --port 4201
+    silent: true
+  dash:
+    desc: Run admin dash
+    dir: "{{.DASHPATH}}"
+    cmds:
+      - ng serve --port 4202
+    silent: true
+  dev:
+    desc: Run everything
+    deps: [api, dash, web]
 
   
   

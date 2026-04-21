@@ -33,7 +33,7 @@ public class MessageRepository(PortfolioDbContext context) : IMessageRepository
     public async Task<IEnumerable<Message>> GetUnreadAsync()
     {
         return await context.Messages
-            .Where(m => !m.isRead)
+            .Where(m => !m.IsRead)
             .OrderByDescending(m => m.CreatedAt)
             .ToListAsync();
     }
