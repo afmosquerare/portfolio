@@ -1,5 +1,6 @@
 using ErrorOr;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Portfolio.Api.Models;
 using Portfolio.Api.Repositories.Technologies;
 
@@ -16,25 +17,43 @@ public class ProjectRepository(PortfolioDbContext context) : IProjectRepository
 
     public async Task AddTechnologyAsync(ProjectTechnology projectTechnology)
     {
-        await context.ProjectTechnologies.AddAsync( projectTechnology );
+        await context.ProjectTechnologies.AddAsync(projectTechnology);
         await context.SaveChangesAsync();
     }
+
+
 
     public async Task DeleteAsync(int id)
     {
         await context.Projects.Where(p => p.Id == id).ExecuteDeleteAsync();
     }
 
-    public async Task<IEnumerable<Project>> GetAllAsync(int? technologyId)
+    public async Task<IEnumerable<Project>> GetAllAsync(int? technologyId, string? lang, bool? isVisible)
     {
 
-        var query = context.Projects.Include(p => p.ProjectTechnologies).ThenInclude(pt => pt.Technology)
-        .AsQueryable();
+        var query = context.Projects
+            .Include(p => p.ProjectTranslations)
+            .Include(p => p.ProjectTechnologies)
+            .ThenInclude(pt => pt.Technology)
+            .ThenInclude(t => t.Category)
+            .AsQueryable();
         if (technologyId.HasValue)
         {
-            query = query.Where( p => p.ProjectTechnologies.Any( pt => pt.TechnologyId == technologyId ));
+            query = query.Where(p => p.ProjectTechnologies.Any(pt => pt.TechnologyId == technologyId));
         }
-        return await query.Where( p => p.IsVisible).OrderByDescending(p => p.Order).ToListAsync();
+
+        if (!lang.IsNullOrEmpty())
+        {
+            query = query.Where(p => p.ProjectTranslations.Any(pt => pt.LanguageCode == lang));
+        }
+        if (isVisible.HasValue)
+        {
+            query = query.Where(p => p.IsVisible == isVisible);
+        }
+        return await query
+            .OrderByDescending(p => p.Order)
+            .ToListAsync();
+        
     }
     public async Task<Project?> GetByIdAsync(int id)
     {
@@ -49,4 +68,15 @@ public class ProjectRepository(PortfolioDbContext context) : IProjectRepository
         return project;
     }
 
+    public async Task UpdateTranslationAsync(ProjectTranslation translation)
+    {
+        context.ProjectTranslations.Update( translation );
+        await context.SaveChangesAsync();
+    }
+    public async Task<ProjectTranslation> AddTranslationAsync(ProjectTranslation translation)
+    {
+        await context.ProjectTranslations.AddAsync(translation);
+        await context.SaveChangesAsync();
+        return translation;
+    }
 }

@@ -5,7 +5,7 @@ using Portfolio.Api.Models;
 namespace Portfolio.Api.Services.Projects;
 public interface IProjectService
 {
-    Task<ErrorOr<IEnumerable<ProjectResponse>>> GetAllAsync(int? technologyId);
+    Task<ErrorOr<IEnumerable<ProjectResponse>>> GetAllAsync(int? technologyId, string? lang, bool? isVisible);
     Task<ErrorOr<Deleted>> DeleteAsync(int id);
 
     Task<ErrorOr<Created>> AddTechnologyAsync(int projectId, int technologyId);

@@ -50,9 +50,9 @@ public class ProjectService(IProjectRepository repository, ITechnologyRepository
         return Result.Deleted;
     }
 
-    public async Task<ErrorOr<IEnumerable<ProjectResponse>>> GetAllAsync(int? technologyId)
+    public async Task<ErrorOr<IEnumerable<ProjectResponse>>> GetAllAsync(int? technologyId, string? lang, bool? isVisible)
     {
-        var projects = await repository.GetAllAsync(technologyId);
+        var projects = await repository.GetAllAsync(technologyId, lang, isVisible);
         return projects.Adapt<List<ProjectResponse>>();
     }
 

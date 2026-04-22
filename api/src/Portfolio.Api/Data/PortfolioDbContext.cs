@@ -11,10 +11,19 @@ public class PortfolioDbContext : DbContext
     public DbSet<Message> Messages => Set<Message>();
     public DbSet<User> Users => Set<User>();
 
+    public DbSet<CategoryTranslation> CategoryTranslations  => Set<CategoryTranslation>();
+    public DbSet<ProjectTranslation> ProjectTranslations  => Set<ProjectTranslation>();
+
     protected override void OnModelCreating(ModelBuilder md)
     {
         md.Entity<ProjectTechnology>()
             .HasKey(pt => new { pt.TechnologyId, pt.ProjectId });
+
+        md.Entity<ProjectTranslation>()
+            .HasKey( pt => new{ pt.ProjectId, pt.LanguageCode });
+
+        md.Entity<CategoryTranslation>()
+            .HasKey(ct => new { ct.LanguageCode, ct.CategoryId});
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken ct= default)

@@ -16,17 +16,18 @@ public class ProjectController(IProjectService service) : ApiController
 
     [AllowAnonymous]
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] int? technologyId)
-        => HandleResult(await service.GetAllAsync(technologyId));
+    public async Task<IActionResult> GetAll([FromQuery] int? technologyId, [FromQuery] string? lang , [FromQuery] bool? isVisible)
+        => HandleResult(await service.GetAllAsync(technologyId, lang, isVisible));
 
     [HttpPost("{projectId}/technologies/{technologyId}")]
     public async Task<IActionResult> AddTechnology(int projectId, int technologyId)
         => HandleResult(await service.AddTechnologyAsync(projectId, technologyId));
-
+    [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> Create(CreateProjectRequest req)
-        => HandleResult(await service.AddAsync(req));
+            => HandleResult(await service.AddAsync(req));
 
+    [AllowAnonymous]
     [HttpPatch("{id}")]
     public async Task<IActionResult> Update(int id, UpdateProjectRequest req)
         => HandleResult(await service.UpdateAsync(id, req));
