@@ -21,6 +21,7 @@ public class CategoryController(ICategoryService service) : ApiController
     public async Task<IActionResult> GetById(int id)
         => HandleResult(await service.GetByIdAsync(id));
 
+    [AllowAnonymous]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
         => HandleDeletedResult(await service.DeleteAsync(id));
@@ -29,12 +30,25 @@ public class CategoryController(ICategoryService service) : ApiController
     public async Task<IActionResult> Update(int id, UpdateCategoryRequest req)
         => HandleResult(await service.UpdateAsync(id, req));
 
+    [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> Create(CreateCategoryRequest req)
-        => HandleResult(await service.AddAsync(req));
+        => HandleResult( await service.AddAsync(req));
 
+    [AllowAnonymous]
+    [HttpPost("{categoryId}/translations")]
+    public async Task<IActionResult> CreateTranslation(int categoryId, CreateCategoryTranslationRequest req)
+        => HandleResult(await service.AddTranslationAsync(categoryId, req));
 
+    [AllowAnonymous]
+    [HttpGet("{categoryId}/translations/{lang}")]
+    public async Task<IActionResult> GetTranslation(int categoryId, string lang)
+        => HandleResult(await service.GetTranslationAsync(categoryId, lang));
 
+    [AllowAnonymous]
+    [HttpPatch("{categoryId}/translations/{lang}")]
+    public async Task<IActionResult> UpdateTranslation(int categoryId, string lang, UpdateCategoryTranslationRequest req)
+        => HandleResult(await service.UpdateTranslationAsync(categoryId, lang, req));
 }
 
 

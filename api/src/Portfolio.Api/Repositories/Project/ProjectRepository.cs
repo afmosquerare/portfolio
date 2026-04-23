@@ -57,7 +57,11 @@ public class ProjectRepository(PortfolioDbContext context) : IProjectRepository
     }
     public async Task<Project?> GetByIdAsync(int id)
     {
-        var project = await context.Projects.FindAsync(id);
+        var project = await context.Projects
+            .Include(p => p.ProjectTranslations)
+            .Include(p => p.ProjectTechnologies)
+            .ThenInclude(pt => pt.Technology)
+            .FirstOrDefaultAsync(p => p.Id == id);
         return project;
     }
 
@@ -78,5 +82,11 @@ public class ProjectRepository(PortfolioDbContext context) : IProjectRepository
         await context.ProjectTranslations.AddAsync(translation);
         await context.SaveChangesAsync();
         return translation;
+    }
+
+    public async Task<ProjectTranslation?> GetTranslationAsync(int projectId, string lang)
+    {
+        return await context.ProjectTranslations
+            .FirstOrDefaultAsync( p => p.ProjectId == projectId  && p.LanguageCode == lang);
     }
 }

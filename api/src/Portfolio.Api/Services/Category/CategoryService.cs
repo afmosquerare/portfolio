@@ -9,9 +9,21 @@ public class CategoryService(ICategoryRepository repository) : ICategoryService
 {
     public async Task<ErrorOr<CategoryResponse>> AddAsync(CreateCategoryRequest req)
     {
-        var category = req.Adapt<Category>();
+        var category = new Category { IconUrl = req.IconUrl };
         var created = await repository.AddAsync(category);
-        return new CategoryResponse(created.Id, created.Name, created.IconUrl);
+        
+        foreach (var translationReq in req.CategoryTranslations)
+        {
+            var translation = translationReq.Adapt<CategoryTranslation>();
+            translation.CategoryId = created.Id;
+            await repository.AddTranslationAsync(translation);
+        }
+        
+        var createdWithTranslations = await repository.GetByIdAsync(created.Id);
+        if (createdWithTranslations is null)
+            return Error.Failure("Category.Creation", "No se pudo crear la categoría");
+            
+        return createdWithTranslations.Adapt<CategoryResponse>();
     }
 
     public async Task<ErrorOr<Deleted>> DeleteAsync(int id)
@@ -54,4 +66,44 @@ public class CategoryService(ICategoryRepository repository) : ICategoryService
         return updated.Adapt<CategoryResponse>();
     }
 
+    public async Task<ErrorOr<CategoryTranslationResponse>> AddTranslationAsync(int categoryId, CreateCategoryTranslationRequest req)
+    {
+        var category = await repository.GetByIdAsync(categoryId);
+        if (category is null)
+            return Error.NotFound("Category.NotFound", $"La categoría con el id {categoryId} no existe");
+
+        var translation = req.Adapt<CategoryTranslation>();
+        translation.CategoryId = categoryId;
+
+        var created = await repository.AddTranslationAsync(translation);
+        return created.Adapt<CategoryTranslationResponse>();
+    }
+
+    public async Task<ErrorOr<CategoryTranslationResponse>> GetTranslationAsync(int categoryId, string lang)
+    {
+        var category = await repository.GetByIdAsync(categoryId);
+        if (category is null)
+            return Error.NotFound("Category.NotFound", $"La categoría con el id {categoryId} no existe");
+        var translation = await repository.GetTranslationAsync(categoryId, lang);
+        if (translation is null)
+            return Error.NotFound("Translation.NotFound", $"La traducción con el codigo {lang} no existe");
+        return translation.Adapt<CategoryTranslationResponse>();
+    }
+
+    public async Task<ErrorOr<CategoryTranslationResponse>> UpdateTranslationAsync(int categoryId, string lang, UpdateCategoryTranslationRequest req)
+    {
+        var category = await repository.GetByIdAsync(categoryId);
+        if (category is null)
+        {
+            return Error.NotFound("Category.NotFound", $"La categoría con el id {categoryId} no existe");
+        }
+        var translation = await repository.GetTranslationAsync(categoryId, lang);
+        if (translation is null)
+        {
+            return Error.NotFound("Translation.NotFound", $"La traduccion no existe");
+        }
+        req.Adapt(translation);
+        await repository.UpdateTranslationAsync(translation);
+        return translation.Adapt<CategoryTranslationResponse>();
+    }
 }

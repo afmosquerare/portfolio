@@ -1,4 +1,5 @@
 using Mapster;
+using Portfolio.Api.DTOs.Category;
 using Portfolio.Api.DTOs.Project;
 using Portfolio.Api.DTOs.Technology;
 using Portfolio.Api.Models;
@@ -13,6 +14,8 @@ public static class MappingConfig
             .Map(dest => dest.Technologies,
             src => src.ProjectTechnologies.Select(pt => pt.Technology.Adapt<TechnologyResponse>()))
             .Map(des => des.Translations, src => src.ProjectTranslations);
-            
+        TypeAdapterConfig<Category, CategoryResponse>.NewConfig()
+            .Map(dest => dest.Translations, src => src.CategoryTranslations);
+
     }
 }

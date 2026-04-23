@@ -16,12 +16,7 @@ public class CreateProjectValidator : AbstractValidator<CreateProjectRequest>
         RuleFor(p => p.GithubUrl).Must( url => Uri.TryCreate(url, UriKind.Absolute, out _)).When( p => p.GithubUrl is not null);
         RuleFor(p => p.ProjectTranslations).NotEmpty();
 
-        RuleForEach( p => p.ProjectTranslations).ChildRules( t =>
-        {
-            t.RuleFor( t => t.LanguageCode ).Must( p => _languageCodes.Contains(p) ).WithMessage("El codigo del idioma debe ser 'en' o 'es'");
-            t.RuleFor( t => t.Title).MinimumLength(5);
-            t.RuleFor( t=> t.Description).MinimumLength(20);
-        });
+        RuleForEach( p => p.ProjectTranslations).SetValidator( new CreateProjectTranslationValidator() );
 
     }
 }

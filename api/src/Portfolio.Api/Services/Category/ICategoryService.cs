@@ -10,4 +10,8 @@ public interface ICategoryService
     Task<ErrorOr<CategoryResponse>> AddAsync( CreateCategoryRequest req);
     Task<ErrorOr<CategoryResponse>> UpdateAsync(int id, UpdateCategoryRequest req);
     Task<ErrorOr<Deleted>> DeleteAsync( int id );
+    
+    Task<ErrorOr<CategoryTranslationResponse>> AddTranslationAsync(int categoryId, CreateCategoryTranslationRequest req);
+    Task<ErrorOr<CategoryTranslationResponse>> GetTranslationAsync(int categoryId, string lang);
+    Task<ErrorOr<CategoryTranslationResponse>> UpdateTranslationAsync(int categoryId, string lang, UpdateCategoryTranslationRequest req);
 }

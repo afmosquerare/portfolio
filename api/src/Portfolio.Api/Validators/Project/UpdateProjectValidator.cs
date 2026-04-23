@@ -10,4 +10,4 @@ public class UpdateProjectValidator : AbstractValidator<UpdateProjectRequest>
         RuleFor(p => p.DemoUrl).NotEmpty().Must( url => Uri.TryCreate(url, UriKind.Absolute, out _)).When( p => p.DemoUrl is not null);
         RuleFor(p => p.GithubUrl).NotEmpty().Must( url => Uri.TryCreate(url, UriKind.Absolute, out _)).When( p => p.GithubUrl is not null);
     }
-}
+}   

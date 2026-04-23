@@ -8,6 +8,7 @@ public interface IProjectRepository
     Task<Project> UpdateAsync(Project project);
     Task AddTechnologyAsync(ProjectTechnology projectTechnology);
 
+    Task<ProjectTranslation?> GetTranslationAsync( int projectId, string lang );
     Task<ProjectTranslation> AddTranslationAsync( ProjectTranslation translation );
 
     Task UpdateTranslationAsync( ProjectTranslation translation );

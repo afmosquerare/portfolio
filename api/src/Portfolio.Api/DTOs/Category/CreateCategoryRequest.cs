@@ -1,2 +1,8 @@
 namespace Portfolio.Api.DTOs.Category;
-public record CreateCategoryRequest( string Name, string? IconUrl );
+
+public record CreateCategoryRequest
+{
+    public string? IconUrl { get; init; }
+
+    public ICollection<CreateCategoryTranslationRequest> CategoryTranslations { get; init; } = [];
+}
