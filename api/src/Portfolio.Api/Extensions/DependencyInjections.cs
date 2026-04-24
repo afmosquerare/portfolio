@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Portfolio.Api.Services.Auth;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Portfolio.Api.Services.Storage;
 
 namespace Portfolio.Api.Extensions;
 
@@ -34,6 +35,8 @@ public static class DependencyInjections
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAuthService, AuthService>();
+
+        services.AddScoped<IStorageService, AzureStorageService>();
         return services;
     }
 
