@@ -1,3 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@plugin "@iconify/tailwind4";
 
-@import 'tailwindcss';
+@theme{
+  --color-angular: #ffb4a8;
+  --color-dotnet: #5865f2;
+}
+@plugin "daisyui";
+* {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+@plugin "daisyui/theme" {
+  name: "portfolio";
+  --color-base-100: #0a0a0a;
+  --color-base-200: #1c1b1b;
+  --color-base-300: #2a2a2a;
+  --color-base-content: #e5e2e1;
+
+  --color-primary: #5865f2;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #00e3fd;
+  --color-secondary-content: #000000;
+
+  --color-accent: #e3175f;
+  --color-accent-content: #ffb2be;
+
+  --color-neutral: #1c1b1b;
+  --color-neutral-content: #e5e2e1;
+
+  --color-info: #00e3fd;
+  --color-success: #4caf50;
+  --color-warning: #ff9800;
+  --color-error: #e3175f;
+
+  --rounded-box: 0.5rem;
+  --rounded-btn: 9999px;
+  --rounded-badge: 9999px;
+}
+
+@utility btn{
+  @apply rounded-full p-8
+
+}
+
+@utility btn-outline{
+  @apply border-white/50
+}
+
+
+::view-transition-old(root) {
+  animation: scale-out 0.3s ease forwards;
+}
+
+::view-transition-new(root) {
+  animation: scale-in 0.4s ease forwards;
+}
+
+@keyframes scale-out {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
