@@ -5,6 +5,6 @@ namespace Portfolio.Api.DTOs.Technology;
 public record TechnologyResponse(
     int Id,
     string Name,
-    string? IconUrl,
+    string? Icon,
     CategoryResponse Category
 );

@@ -12,9 +12,9 @@ public class UpdateTechnologyValidator : AbstractValidator<UpdateTechnologyReque
             .MaximumLength(100)
             .When(t => t.Name is not null);
 
-        RuleFor(t => t.IconUrl)
-            .Must(url => Uri.TryCreate(url, UriKind.Absolute, out _))
-            .When(t => t.IconUrl is not null);
+        RuleFor(t => t.Icon)
+            .NotEmpty()
+            .When(t => t.Icon is not null);
 
         RuleFor(t => t.CategoryId)
             .GreaterThan(0)

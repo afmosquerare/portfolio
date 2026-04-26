@@ -5,11 +5,12 @@ using Portfolio.Api.Models;
 using Portfolio.Api.Repositories.Interfaces;
 using Portfolio.Api.Services.Interfaces;
 
+namespace Portfolio.Api.Services.Categories;
 public class CategoryService(ICategoryRepository repository) : ICategoryService
 {
     public async Task<ErrorOr<CategoryResponse>> AddAsync(CreateCategoryRequest req)
     {
-        var category = new Category { IconUrl = req.IconUrl };
+        var category = new Category { Icon = req.Icon };
         var created = await repository.AddAsync(category);
         
         foreach (var translationReq in req.CategoryTranslations)

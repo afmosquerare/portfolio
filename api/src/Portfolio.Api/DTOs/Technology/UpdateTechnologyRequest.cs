@@ -2,6 +2,6 @@ namespace Portfolio.Api.DTOs.Technology;
 
 public record UpdateTechnologyRequest(
     string? Name,
-    string? IconUrl,
+    string? Icon,
     int? CategoryId
 );

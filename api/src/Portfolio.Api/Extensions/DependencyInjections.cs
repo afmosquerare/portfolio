@@ -14,6 +14,7 @@ using Portfolio.Api.Services.Auth;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Portfolio.Api.Services.Storage;
+using Portfolio.Api.Services.Categories;
 
 namespace Portfolio.Api.Extensions;
 

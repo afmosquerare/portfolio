@@ -5,8 +5,8 @@ public class UpdateCategoryValidator : AbstractValidator<UpdateCategoryRequest>
 {
     public UpdateCategoryValidator()
     {
-        RuleFor( c => c.IconUrl)
-        .Must( url => Uri.TryCreate( url, UriKind.Absolute, out _))
-        .When( url => url is not null);
+        RuleFor(c => c.Icon)
+        .NotEmpty()
+        .When(c => c.Icon is not null);
     }
 }
