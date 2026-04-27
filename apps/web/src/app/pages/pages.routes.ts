@@ -1,10 +1,17 @@
 import { Routes } from '@angular/router';
-import ProjectsPage from './projects/projects.page';
 
 export default [
   {
     path: 'projects',
-    component: ProjectsPage,
+    loadComponent: () => import('./projects/projects.page')
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./about/about.page')
+  },
+  {
+    path: 'contact',
+    loadComponent: () => import('./contact/contact.page')
   },
   {
     path: '',

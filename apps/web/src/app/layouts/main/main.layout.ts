@@ -5,14 +5,14 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   template: `
     <p-navbar />
-    <main class="pt-40 pb-24 px-6 max-w-7xl mx-auto">
+    <main class="pt-36 pb-24 px-6 max-w-6xl mx-auto">
       <router-outlet />
     </main>
   `,
   imports: [NavbarComponent, RouterOutlet],
 })
 export default class MainLayout implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }
