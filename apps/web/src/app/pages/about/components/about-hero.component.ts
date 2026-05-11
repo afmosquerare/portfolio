@@ -42,7 +42,7 @@ import { Component } from '@angular/core';
       </div>
       <div class="flex items-start">
         <a href="/assets/cv.pdf" target="_blank"
-          class="btn btn-primary text-white rounded-full font-bold w-full sm:w-auto shadow-lg shadow-primary/20 hover:scale-105 transition-transform duration-300">
+          class="btn btn-primary text-white rounded-full font-bold w-full sm:w-auto hover:scale-105 transition-transform duration-300">
           <span class="icon-[lucide--download] text-xl"></span>
           Download CV
         </a>

@@ -42,7 +42,7 @@
 }
 
 @utility btn {
-  @apply rounded-full p-8
+  @apply rounded-full p-8 transition-all duration-300
 }
 
 @utility btn-outline {
