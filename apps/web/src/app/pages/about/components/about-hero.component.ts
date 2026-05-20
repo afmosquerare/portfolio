@@ -41,8 +41,8 @@ import { Component } from '@angular/core';
         </p>
       </div>
       <div class="flex items-start">
-        <a href="/assets/cv.pdf" target="_blank"
-          class="btn btn-primary text-white rounded-full font-bold w-full sm:w-auto hover:scale-105 transition-transform duration-300">
+        <a href="/cv.pdf" target="_blank"
+          class="btn btn-primary text-white rounded-full font-bold w-full sm:w-auto hover:scale-105 ">
           <span class="icon-[lucide--download] text-xl"></span>
           Download CV
         </a>

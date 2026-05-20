@@ -1,11 +1,6 @@
 @import "tailwindcss";
 @plugin "@iconify/tailwind4";
 
-@theme {
-  --color-angular: #ffb4a8;
-  --color-dotnet: #5865f2;
-}
-
 @plugin "daisyui";
 
 * {
@@ -42,16 +37,20 @@
 }
 
 @utility btn {
-  @apply rounded-full p-8 transition-all duration-300
+  @apply rounded-full p-8 transition-transform duration-500 ease-out
 }
 
 @utility btn-outline {
   @apply border-white/50
 }
 
+@utility input {
+  @apply outline-0
+}
+
 
 ::view-transition-old(root) {
-  animation: scale-out 0.3s ease forwards;
+  animation: scale-out 0.3s eas e forwards;
 }
 
 ::view-transition-new(root) {

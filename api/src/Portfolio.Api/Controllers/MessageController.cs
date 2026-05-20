@@ -27,7 +27,15 @@ public class MessageController(IMessageService service) : ApiController
     [HttpPost]
     [AllowAnonymous]
     public async Task<IActionResult> Create([FromBody] CreateMessageRequest req)
-        => HandleResult(await service.AddAsync(req));
+    {
+        // Honeypot check
+        if (!string.IsNullOrEmpty(req.WebsiteUrl))
+        {
+            return Ok();
+        }
+
+        return HandleResult(await service.AddAsync(req));
+    }
 
     [HttpPatch("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] UpdateMessageRequest req)

@@ -1,7 +1,5 @@
 <section class="mb-8">
-  <h1
-    class="text-7xl md:text-8xl font-extrabold tracking-tighter text-base-content mb-6 leading-none"
-  >
+  <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter text-base-content mb-6 leading-none">
     Projects
   </h1>
   <p class="text-base-content/60 text-lg font-light">
@@ -9,27 +7,15 @@
   </p>
 </section>
 
-<section class="flex flex-wrap items-center gap-6 mb-8">
-  <div
-    class="flex items-center bg-base-200/40 backdrop-blur-md p-1 rounded-full border border-white/5 text-[10px] font-bold tracking-[0.2em] uppercase"
-  >
-    <button
-      class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-primary-content transition-all"
-    >
-      <span class="icon-[lucide--layout-grid] text-lg"></span>
-    </button>
-    <button
-      class="flex items-center gap-2 px-4 py-1.5 rounded-full text-base-content/40 hover:text-base-content transition-all cursor-pointer"
-    >
-      <span class="icon-[lucide--list] text-lg"></span>
-    </button>
-  </div>
+<section class="hidden md:flex flex-wrap items-center gap-6 mb-8">
+  <app-view-toggle [(view)]="viewMode" />
 </section>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
-  <p-project-card/>
-  <p-project-card/>
-  <p-project-card/>
-  <p-project-card/>
-  
+<div [class.grid]="viewMode() === 'grid'" [class.grid-cols-1]="true" [class.md:grid-cols-2]="viewMode() === 'grid'"
+  [class.gap-x-12]="true" [class.gap-y-16]="viewMode() === 'grid'" [class.flex]="viewMode() === 'list'"
+  [class.flex-col]="viewMode() === 'list'" [class.gap-y-10]="viewMode() === 'list'">
+  <p-project-card [view]="viewMode()" />
+  <p-project-card [view]="viewMode()" />
+  <p-project-card [view]="viewMode()" />
+  <p-project-card [view]="viewMode()" />
 </div>

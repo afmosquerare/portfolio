@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
           <div class="flex flex-wrap gap-x-12 gap-y-10">
             @for (tech of category.items; track $index) {
             <div class="flex flex-col items-center gap-4 md:hover:-translate-y-2 transition-transform duration-300">
-              <span [class]="tech.icon + ' text-5xl sm:text-6xl ' + tech.color + ' transition-all duration-500 opacity-80 md:grayscale  md:group-hover:grayscale-0 md:group-hover:opacity-100 sm:group-hover:scale-110'"></span>
+              <span [class]="tech.icon + ' text-5xl sm:text-6xl ' + tech.color + ' transition-all duration-500 opacity-80 sm:group-hover:scale-110'"></span>
               <span class="text-sm font-semibold tracking-wide text-base-content/70 md:text-base-content/60 md:group-hover:text-base-content transition-colors duration-500">
                 {{ tech.name }}
               </span>
@@ -69,8 +69,15 @@ export class AboutTechStackComponent {
       items: [
         { name: 'SQL Server', icon: 'icon-[mdi--database]', color: 'text-[#CC292B]' },
         { name: 'PostgreSQL', icon: 'icon-[simple-icons--postgresql]', color: 'text-[#4169E1]' },
+        { name: 'Azure', icon: 'icon-[mdi--microsoft-azure]', color: 'text-[#0089D6]' }
+      ]
+    },
+    {
+      title: 'Tools',
+      items: [
+        { name: 'Git', icon: 'icon-[mdi--git]', color: 'text-[#F1502F]' },
+        { name: 'GitHub', icon: 'icon-[mdi--github]', color: 'text-[#FFFFFF]' },
         { name: 'Docker', icon: 'icon-[mdi--docker]', color: 'text-[#2496ED]' },
-        { name: 'Azure', icon: 'icon-[mdi--microsoft-azure]', color: 'text-[#0089D6]' },
         { name: 'Taskfile', icon: 'icon-[lucide--terminal-square]', color: 'text-[#29BEB0]' }
       ]
     }

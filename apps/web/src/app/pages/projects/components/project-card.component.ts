@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'p-project-card',
-    templateUrl: 'project-card.component.html'
+    templateUrl: 'project-card.component.html',
+    standalone: true
 })
-
-export class ProjectCardComponent implements OnInit {
-    constructor() { }
-
-    ngOnInit() { }
+export class ProjectCardComponent {
+    view = input<'grid' | 'list'>('grid');
 }

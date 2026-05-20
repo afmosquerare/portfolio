@@ -14,6 +14,22 @@ builder.Services.AddDbContext<PortfolioDbContext>(options =>
    options.UseSqlServer( builder.Configuration["ConnectionStrings:Default"]  ); 
 });
 
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            if (allowedOrigins.Length > 0)
+            {
+                policy.WithOrigins(allowedOrigins)
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            }
+        });
+});
+
 builder.Services.AddControllers();
 
 MappingConfig.Configure();
@@ -26,6 +42,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
 app.UseAuthentication(); 
 app.UseAuthorization();  
 app.MapControllers();
