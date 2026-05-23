@@ -14,27 +14,14 @@
       <thead class="bg-base-300/30 text-base-content/70">
         <tr>
           <th>ID</th>
-          <th>Icon</th>
           <th>Name</th>
           <th class="text-right">Actions</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-white/5">
         @for (tech of technologies; track tech.id) {
-        <tr class="hover:bg-white/[0.02] transition-colors">
+        <tr class="hover:bg-white/2 transition-colors">
           <td class="font-mono text-sm opacity-70">{{ tech.id }}</td>
-          <td>
-            <div
-              class="w-10 h-10 rounded-xl bg-base-300 border border-white/10 flex items-center justify-center text-xl text-white">
-              @if (tech.icon) {
-              <span class="inline-block w-6 h-6 bg-current" [style.mask-image]="getIconUrl(tech.icon)"
-                [style.-webkit-mask-image]="getIconUrl(tech.icon)" [style.mask-size]="'cover'"
-                [style.-webkit-mask-size]="'cover'"></span>
-              } @else {
-              <span class="icon-[mdi--code-tags]"></span>
-              }
-            </div>
-          </td>
           <td>
             <div class="font-bold text-white">{{ tech.name }}</div>
           </td>
@@ -75,12 +62,6 @@
           class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary transition-colors text-white"
           [class.input-error]="formUtils.isValidField(techForm, 'name')" />
         <error-message class="mt-1" [control]="techForm.controls.name" />
-      </div>
-      <div class="form-control w-full mb-8">
-        <label class="label"><span class="label-text text-base-content/70">Iconify Name (optional)</span></label>
-        <input type="text" formControlName="icon" placeholder="e.g. mdi--angular"
-          class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary transition-colors text-white" />
-        <div class="label"><span class="label-text-alt opacity-60">Find icons on icones.js.org</span></div>
       </div>
       <div class="modal-action flex gap-2">
         <button type="button" class="btn btn-ghost" (click)="closeModal()">Cancel</button>

@@ -36,7 +36,8 @@ export default class Overview implements OnInit {
 
   quickActions = [
     { title: 'New Project', icon: 'icon-[mdi--plus]', link: '/projects', queryParams: { action: 'new' } },
-    { title: 'New Technology', icon: 'icon-[mdi--plus]', link: '/technologies', queryParams: { action: 'new' } }
+    { title: 'New Technology', icon: 'icon-[mdi--plus]', link: '/technologies', queryParams: { action: 'new' } },
+    { title: 'Read messages', icon: 'icon-[mdi--email]', link: '/messages' }
   ];
 
   ngOnInit() {

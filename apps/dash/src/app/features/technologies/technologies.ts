@@ -39,8 +39,7 @@ export default class Technologies implements OnInit {
   editingId = signal<number | null>(null);
 
   techForm = this.fb.group({
-    name: ['', Validators.required],
-    icon: ['']
+    name: ['', Validators.required]
   });
 
   ngOnInit() {
@@ -60,8 +59,7 @@ export default class Technologies implements OnInit {
   editTechnology(tech: Technology) {
     this.editingId.set(tech.id);
     this.techForm.patchValue({
-      name: tech.name,
-      icon: tech.icon || ''
+      name: tech.name
     });
     this.modal().open();
   }
@@ -75,8 +73,7 @@ export default class Technologies implements OnInit {
     this.isSaving.set(true);
 
     const request = {
-      name: this.techForm.value.name!,
-      icon: this.techForm.value.icon || undefined
+      name: this.techForm.value.name!
     };
 
     if (this.editingId()) {
@@ -111,10 +108,5 @@ export default class Technologies implements OnInit {
         });
       }
     });
-  }
-
-  getIconUrl(icon: string): string {
-    if (!icon) return '';
-    return `url(https://api.iconify.design/${icon.split('--').join('/')}.svg)`;
   }
 }

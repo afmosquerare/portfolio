@@ -31,8 +31,8 @@
           </td>
           <td class="text-sm opacity-70">{{ msg.createdAt | date:'short' }}</td>
           <td>
-            <span class="badge badge-sm badge-outline"
-              [ngClass]="msg.isRead ? 'badge-neutral border-white/10 text-base-content/50' : 'badge-info border-info/30 text-info bg-info/10'">
+            <span class="badge badge-md border-none"
+              [ngClass]="msg.isRead ? 'badge-neutral border-white/10 text-base-content/50' : 'badge-info  text-info bg-info/10'">
               {{ msg.isRead ? 'Read' : 'New' }}
             </span>
           </td>
@@ -95,7 +95,7 @@
       </div>
 
       <div class="p-6 md:p-8 bg-base-200/50 min-h-[200px]">
-        <div class="text-base-content/90 leading-relaxed whitespace-pre-wrap font-['Nunito'] text-[15px] md:text-base">
+        <div class="text-base-content/90 leading-relaxed whitespace-pre-wrap text-[15px] md:text-base">
           {{ selectedMessage()?.body }}</div>
       </div>
 

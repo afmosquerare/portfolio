@@ -43,12 +43,12 @@
           <td>
             <div class="flex flex-wrap gap-1">
               @for (tech of project.technologies; track tech.id) {
-              <span class="badge badge-sm badge-ghost border-white/10">{{ tech.name }}</span>
+              <span class="badge border-none badge-md badge-ghost border-white/10">{{ tech.name }}</span>
               }
             </div>
           </td>
           <td>
-            <span class="badge badge-sm badge-outline"
+            <span class="badge badge-sm border-none"
               [ngClass]="project.isVisible ? 'badge-success border-success/30 text-success bg-success/10' : 'badge-warning border-warning/30 text-warning bg-warning/10'">
               {{ project.isVisible ? 'Visible' : 'Hidden' }}
             </span>

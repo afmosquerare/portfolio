@@ -12,7 +12,7 @@ import { Component, output } from '@angular/core';
           <span class="icon-[mdi--menu] text-xl "></span>
         </label>
       </div>
-      <div class="flex-1 lg:hidden font-bold text-2xl ml-2 tracking-tight font-['Montserrat_Alternates'] text-white">Control Panel</div>
+      <div class="flex-1 lg:hidden font-bold text-2xl ml-2 tracking-tight text-white">Control Panel</div>
       <div class="flex-1 hidden lg:flex"></div>
       <div class="flex-none lg:hidden">
         <button class="btn btn-ghost btn-circle hover:bg-error/20 hover:text-error" (click)="onLogout()">

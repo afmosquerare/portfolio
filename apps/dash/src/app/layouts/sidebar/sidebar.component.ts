@@ -10,7 +10,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   },
   template: `
       <div class="flex items-center justify-center px-4 py-6 mb-4">
-        <span class="text-3xl font-bold tracking-tight text-white font-['Montserrat_Alternates']">Control Panel</span>
+        <span class="text-3xl font-bold tracking-tight text-white ">Control Panel</span>
       </div>
       <ul class="space-y-1">
         @for (item of navItems; track item.path) {
