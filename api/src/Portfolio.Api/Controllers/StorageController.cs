@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Api.Services.Storage;
 
-
 namespace Portfolio.Api.Controllers;
 
 [ApiController]
@@ -11,7 +10,6 @@ namespace Portfolio.Api.Controllers;
 public class StorageController(IStorageService storageService) : ApiController
 {
     private const string _commonContainer = "project-images";
-    [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> Upload(IFormFile file, [FromQuery] string container = _commonContainer)
         => HandleResult(await storageService.UploadAsync(file, container));

@@ -23,12 +23,15 @@ public class ProjectController(IProjectService service) : ApiController
     [HttpPost("{projectId}/technologies/{technologyId}")]
     public async Task<IActionResult> AddTechnology(int projectId, int technologyId)
         => HandleResult(await service.AddTechnologyAsync(projectId, technologyId));
-    [AllowAnonymous]
+        
+    [HttpDelete("{projectId}/technologies/{technologyId}")]
+    public async Task<IActionResult> RemoveTechnology(int projectId, int technologyId)
+        => HandleDeletedResult(await service.RemoveTechnologyAsync(projectId, technologyId));
+        
     [HttpPost]
     public async Task<IActionResult> Create(CreateProjectRequest req)
         => HandleResult(await service.AddAsync(req));
 
-    [AllowAnonymous]
     [HttpPatch("{id}")]
     public async Task<IActionResult> Update(int id, UpdateProjectRequest req)
         => HandleResult(await service.UpdateAsync(id, req));
@@ -37,7 +40,6 @@ public class ProjectController(IProjectService service) : ApiController
     public async Task<IActionResult> Delete(int id)
         => HandleDeletedResult(await service.DeleteAsync(id));
 
-    [AllowAnonymous]
     [HttpPost("{projectId}/translations")]
     public async Task<IActionResult> AddTranslation(int projectId, CreateProjectTranslationRequest req)
     => HandleResult(await service.AddTranslationAsync(projectId, req));
@@ -47,7 +49,6 @@ public class ProjectController(IProjectService service) : ApiController
     public async Task<IActionResult> GetTranslation(int projectId, string lang)
         => HandleResult(await service.GetTranslationAsync(projectId, lang));
 
-    [AllowAnonymous]
     [HttpPatch("{projectId}/translations/{lang}")]
     public async Task<IActionResult> UpdateTranslation(int projectId, string lang, UpdateProjectTranslationRequest req)
         => HandleResult(await service.UpdateTranslationAsync(projectId, lang, req));

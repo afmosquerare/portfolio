@@ -11,7 +11,6 @@ namespace Portfolio.Api.Controllers;
 public class MessageController(IMessageService service) : ApiController
 {
 
-    
     [HttpGet]
     public async Task<IActionResult> GetAll()
         => HandleResult(await service.GetAllAsync());

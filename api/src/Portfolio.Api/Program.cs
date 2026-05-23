@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 builder.Services.AddFluentValidation();
 builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddOutputCache();
 builder.Services.AddDbContext<PortfolioDbContext>(options =>
 {
    options.UseSqlServer( builder.Configuration["ConnectionStrings:Default"]  ); 
@@ -43,6 +44,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
+app.UseOutputCache();
 app.UseAuthentication(); 
 app.UseAuthorization();  
 app.MapControllers();

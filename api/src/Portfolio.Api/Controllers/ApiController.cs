@@ -1,7 +1,9 @@
 using System.Reflection.Metadata;
 using ErrorOr;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+[Authorize]
 [ApiController]
 public class ApiController : ControllerBase
 {
@@ -41,7 +43,5 @@ public class ApiController : ControllerBase
             errors => Unauthorized()
         );
     }
-
-
 
 }
