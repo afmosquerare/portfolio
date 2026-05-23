@@ -7,11 +7,8 @@ public class PortfolioDbContext : DbContext
     public DbSet<Project> Projects => Set<Project>();
     public DbSet<Technology> Technologies => Set<Technology>();
     public DbSet<ProjectTechnology> ProjectTechnologies => Set<ProjectTechnology>();
-    public DbSet<Category> Categories => Set<Category>();
     public DbSet<Message> Messages => Set<Message>();
     public DbSet<User> Users => Set<User>();
-
-    public DbSet<CategoryTranslation> CategoryTranslations  => Set<CategoryTranslation>();
     public DbSet<ProjectTranslation> ProjectTranslations  => Set<ProjectTranslation>();
 
     protected override void OnModelCreating(ModelBuilder md)
@@ -21,9 +18,6 @@ public class PortfolioDbContext : DbContext
 
         md.Entity<ProjectTranslation>()
             .HasKey( pt => new{ pt.ProjectId, pt.LanguageCode });
-
-        md.Entity<CategoryTranslation>()
-            .HasKey(ct => new { ct.LanguageCode, ct.CategoryId});
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken ct= default)
