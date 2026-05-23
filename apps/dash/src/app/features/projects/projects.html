@@ -1,0 +1,187 @@
+<div>
+  <page-header title="Projects" actionText="Add Project" (onAction)="openModal()">
+  </page-header>
+
+  @if (projectsResource.isLoading()) {
+  <div class="p-6">
+    <app-table-skeleton [columns]="6" [rows]="4"></app-table-skeleton>
+  </div>
+  }
+
+  @if (projectsResource.value(); as projects) {
+  <div class="overflow-x-auto bg-base-200/40 rounded-xl border border-white/5">
+    <table class="table w-full">
+      <thead class="bg-base-300/30 text-base-content/70">
+        <tr>
+          <th>Order</th>
+          <th>Image</th>
+          <th>Details</th>
+          <th>Technologies</th>
+          <th>Visibility</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-white/5">
+        @for (project of projects; track project.id) {
+        <tr class="hover:bg-white/[0.02] transition-colors">
+          <td>{{ project.order }}</td>
+          <td>
+            <div class="avatar">
+              <div class="w-12 h-12 rounded-lg bg-base-300 border border-white/10 flex items-center justify-center">
+                @if (project.imageUrl) {
+                <img [src]="project.imageUrl" alt="Project image" class="object-cover rounded-lg" />
+                } @else {
+                <span class="icon-[mdi--image] text-2xl text-base-content/30"></span>
+                }
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="font-bold text-white">{{ project.translations[0]?.title || 'No title' }}</div>
+            <div class="text-sm opacity-50">{{ project.createdAt | date }}</div>
+          </td>
+          <td>
+            <div class="flex flex-wrap gap-1">
+              @for (tech of project.technologies; track tech.id) {
+              <span class="badge badge-sm badge-ghost border-white/10">{{ tech.name }}</span>
+              }
+            </div>
+          </td>
+          <td>
+            <span class="badge badge-sm badge-outline"
+              [ngClass]="project.isVisible ? 'badge-success border-success/30 text-success bg-success/10' : 'badge-warning border-warning/30 text-warning bg-warning/10'">
+              {{ project.isVisible ? 'Visible' : 'Hidden' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="flex flex-wrap justify-end gap-2">
+              <button (click)="editProject(project)"
+                class="btn btn-sm btn-ghost hover:bg-white/5 hover:text-primary btn-square tooltip" data-tip="Edit">
+                <span class="icon-[mdi--pencil] text-lg"></span>
+              </button>
+              <button (click)="deleteProject(project.id)"
+                class="btn btn-sm btn-ghost hover:bg-error/10 hover:text-error btn-square tooltip" data-tip="Delete">
+                <span class="icon-[mdi--trash] text-lg"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="6" class="text-center py-12 text-base-content/50">
+            <div class="flex flex-col items-center gap-3">
+              <span class="icon-[mdi--briefcase-outline] text-4xl opacity-50"></span>
+              <p>No projects found. Create one to get started.</p>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+
+  <app-modal #modal [title]="editingId() ? 'Edit Project' : 'Add New Project'" [customClasses]="'w-11/12 max-w-3xl'">
+    <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div role="tablist" class="tabs tabs-lifted w-full md:col-span-2 mt-4">
+          <input type="radio" name="proj_tabs" role="tab" class="tab font-bold" aria-label="English"
+            checked="checked" />
+          <div role="tabpanel" class="tab-content bg-base-300/30 border-white/10 rounded-box p-6 mt-2">
+            <div class="form-control w-full mb-4">
+              <label class="label"><span class="label-text text-base-content/70">Project Title
+                  (English)</span></label>
+              <input type="text" formControlName="titleEn" placeholder="e.g. My Awesome App"
+                class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white"
+                [class.input-error]="formUtils.isValidField(projectForm, 'titleEn')" />
+              <error-message class="mt-1" [control]="projectForm.controls.titleEn" />
+            </div>
+            <div class="form-control flex flex-col w-full">
+              <label class="label"><span class="label-text text-base-content/70">Description (English)</span></label>
+              <textarea formControlName="descriptionEn" placeholder="Project details..."
+                class="textarea textarea-bordered bg-base-300 border-white/10 focus:border-primary text-white h-24"
+                [class.textarea-error]="formUtils.isValidField(projectForm, 'descriptionEn')"></textarea>
+              <error-message class="mt-1" [control]="projectForm.controls.descriptionEn" />
+            </div>
+          </div>
+
+          <input type="radio" name="proj_tabs" role="tab" class="tab font-bold" aria-label="Español" />
+          <div role="tabpanel" class="tab-content bg-base-300/30 border-white/10 rounded-box p-6 mt-2">
+            <div class="form-control w-full mb-4">
+              <label class="label"><span class="label-text text-base-content/70">Título del Proyecto
+                  (Español)</span></label>
+              <input type="text" formControlName="titleEs" placeholder="ej. Mi Gran App"
+                class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white"
+                [class.input-error]="formUtils.isValidField(projectForm, 'titleEs')" />
+              <error-message class="mt-1" [control]="projectForm.controls.titleEs" />
+            </div>
+            <div class="form-control flex flex-col w-full">
+              <label class="label"><span class="label-text text-base-content/70">Descripción (Español)</span></label>
+              <textarea formControlName="descriptionEs" placeholder="Detalles del proyecto..."
+                class="textarea textarea-bordered bg-base-300 border-white/10 focus:border-primary text-white h-24"
+                [class.textarea-error]="formUtils.isValidField(projectForm, 'descriptionEs')"></textarea>
+              <error-message class="mt-1" [control]="projectForm.controls.descriptionEs" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-control w-full md:col-span-2 mt-4">
+          <label class="label"><span class="label-text text-base-content/70">Project Image</span></label>
+          <div class="flex gap-2">
+            <input type="file" (change)="onFileSelected($event)" accept="image/*"
+              class="file-input file-input-bordered file-input-primary w-full max-w-xs text-sm" />
+            <input type="url" formControlName="imageUrl" placeholder="or enter image URL..."
+              class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white" />
+          </div>
+          @if (isUploading()) {
+          <div class="text-sm text-primary mt-2 flex items-center gap-2">
+            <span class="loading loading-spinner loading-xs"></span> Uploading image...
+          </div>
+          }
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label"><span class="label-text text-base-content/70">GitHub URL</span></label>
+          <input type="url" formControlName="githubUrl" placeholder="https://github.com/..."
+            class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white" />
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label"><span class="label-text text-base-content/70">Live Demo URL</span></label>
+          <input type="url" formControlName="demoUrl" placeholder="https://..."
+            class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white" />
+        </div>
+
+        <div class="form-control w-fit mt-2">
+          <label class="cursor-pointer label gap-4">
+            <span class="label-text text-base-content/70">Visible to public</span>
+            <input type="checkbox" formControlName="isVisible" class="toggle toggle-primary" />
+          </label>
+        </div>
+
+        <div class="form-control w-full md:col-span-2 mt-4">
+          <label class="label"><span class="label-text text-base-content/70">Technologies</span></label>
+          <div class="flex flex-wrap gap-2">
+            @for (tech of technologies(); track tech.id) {
+            <button type="button" class="btn btn-sm" [class.btn-primary]="selectedTechIds().includes(tech.id)"
+              [class.btn-outline]="!selectedTechIds().includes(tech.id)" (click)="toggleTechnology(tech.id)">
+              {{ tech.name }}
+            </button>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-action flex gap-2 mt-8">
+        <button type="button" class="btn btn-ghost" (click)="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="projectForm.invalid || isSaving()">
+          @if (isSaving()) {
+          <span class="loading loading-spinner loading-xs"></span>
+          }
+          {{ editingId() ? 'Save Changes' : 'Save Project' }}
+        </button>
+      </div>
+    </form>
+  </app-modal>
+
+</div>

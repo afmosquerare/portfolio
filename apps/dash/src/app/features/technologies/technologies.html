@@ -1,0 +1,96 @@
+<div>
+  <page-header title="Technologies" actionText="Add Technology" (onAction)="openModal()">
+  </page-header>
+
+  @if (technologiesResource.isLoading()) {
+  <div class="p-6">
+    <app-table-skeleton [columns]="4" [rows]="4"></app-table-skeleton>
+  </div>
+  }
+
+  @if (technologiesResource.value(); as technologies) {
+  <div class="overflow-x-auto bg-base-200/40 rounded-xl border border-white/5">
+    <table class="table w-full">
+      <thead class="bg-base-300/30 text-base-content/70">
+        <tr>
+          <th>ID</th>
+          <th>Icon</th>
+          <th>Name</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-white/5">
+        @for (tech of technologies; track tech.id) {
+        <tr class="hover:bg-white/[0.02] transition-colors">
+          <td class="font-mono text-sm opacity-70">{{ tech.id }}</td>
+          <td>
+            <div
+              class="w-10 h-10 rounded-xl bg-base-300 border border-white/10 flex items-center justify-center text-xl text-white">
+              @if (tech.icon) {
+              <span class="inline-block w-6 h-6 bg-current" [style.mask-image]="getIconUrl(tech.icon)"
+                [style.-webkit-mask-image]="getIconUrl(tech.icon)" [style.mask-size]="'cover'"
+                [style.-webkit-mask-size]="'cover'"></span>
+              } @else {
+              <span class="icon-[mdi--code-tags]"></span>
+              }
+            </div>
+          </td>
+          <td>
+            <div class="font-bold text-white">{{ tech.name }}</div>
+          </td>
+          <td class="text-right">
+            <div class="flex flex-wrap justify-end gap-2">
+              <button (click)="editTechnology(tech)"
+                class="btn btn-sm btn-ghost hover:bg-white/5 hover:text-primary btn-square tooltip" data-tip="Edit">
+                <span class="icon-[mdi--pencil] text-lg"></span>
+              </button>
+              <button (click)="deleteTechnology(tech.id)"
+                class="btn btn-sm btn-ghost hover:bg-error/10 hover:text-error btn-square tooltip" data-tip="Delete">
+                <span class="icon-[mdi--trash] text-lg"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="4" class="text-center py-12 text-base-content/50">
+            <div class="flex flex-col items-center gap-3">
+              <span class="icon-[mdi--code-tags] text-4xl opacity-50"></span>
+              <p>No technologies found. Add the stack you use.</p>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+
+  <app-modal #modal [title]="editingId() ? 'Edit Technology' : 'Add New Technology'"
+    [customClasses]="'border border-white/10'">
+    <form [formGroup]="techForm" (ngSubmit)="saveTechnology()">
+      <div class="form-control w-full mb-4">
+        <label class="label"><span class="label-text text-base-content/70">Name</span></label>
+        <input type="text" formControlName="name" placeholder="e.g. Angular, React..."
+          class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary transition-colors text-white"
+          [class.input-error]="formUtils.isValidField(techForm, 'name')" />
+        <error-message class="mt-1" [control]="techForm.controls.name" />
+      </div>
+      <div class="form-control w-full mb-8">
+        <label class="label"><span class="label-text text-base-content/70">Iconify Name (optional)</span></label>
+        <input type="text" formControlName="icon" placeholder="e.g. mdi--angular"
+          class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary transition-colors text-white" />
+        <div class="label"><span class="label-text-alt opacity-60">Find icons on icones.js.org</span></div>
+      </div>
+      <div class="modal-action flex gap-2">
+        <button type="button" class="btn btn-ghost" (click)="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="techForm.invalid || isSaving()">
+          @if (isSaving()) {
+          <span class="loading loading-spinner loading-xs"></span>
+          }
+          {{ editingId() ? 'Save Changes' : 'Save Technology' }}
+        </button>
+      </div>
+    </form>
+  </app-modal>
+</div>
