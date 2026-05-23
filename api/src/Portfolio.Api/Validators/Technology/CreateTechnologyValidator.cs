@@ -11,8 +11,5 @@ public class CreateTechnologyValidator : AbstractValidator<CreateTechnologyReque
             .NotEmpty()
             .MinimumLength(2)
             .MaximumLength(100);
-
-        RuleFor(t => t.CategoryId)
-            .GreaterThan(0);
     }
 }

@@ -12,8 +12,8 @@ public class TechnologyController(ITechnologyService service) : ApiController
 {
     [HttpGet]
     [AllowAnonymous]
-    public async Task<IActionResult> GetAll([FromQuery] int? categoryId)
-        => HandleResult( await service.GetAllAsync( categoryId ));
+    public async Task<IActionResult> GetAll()
+        => HandleResult( await service.GetAllAsync());
 
     [HttpGet("{id}")]
     [AllowAnonymous]

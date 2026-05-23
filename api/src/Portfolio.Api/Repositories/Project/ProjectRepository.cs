@@ -21,7 +21,12 @@ public class ProjectRepository(PortfolioDbContext context) : IProjectRepository
         await context.SaveChangesAsync();
     }
 
-
+    public async Task RemoveTechnologyAsync(int projectId, int technologyId)
+    {
+        await context.ProjectTechnologies
+            .Where(pt => pt.ProjectId == projectId && pt.TechnologyId == technologyId)
+            .ExecuteDeleteAsync();
+    }
 
     public async Task DeleteAsync(int id)
     {
@@ -35,7 +40,6 @@ public class ProjectRepository(PortfolioDbContext context) : IProjectRepository
             .Include(p => p.ProjectTranslations)
             .Include(p => p.ProjectTechnologies)
             .ThenInclude(pt => pt.Technology)
-            .ThenInclude(t => t.Category)
             .AsQueryable();
         if (technologyId.HasValue)
         {

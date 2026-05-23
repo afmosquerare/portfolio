@@ -15,9 +15,5 @@ public class UpdateTechnologyValidator : AbstractValidator<UpdateTechnologyReque
         RuleFor(t => t.Icon)
             .NotEmpty()
             .When(t => t.Icon is not null);
-
-        RuleFor(t => t.CategoryId)
-            .GreaterThan(0)
-            .When(t => t.CategoryId.HasValue);
     }
 }

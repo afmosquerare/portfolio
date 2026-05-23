@@ -2,20 +2,15 @@ using ErrorOr;
 using Mapster;
 using Portfolio.Api.DTOs.Technology;
 using Portfolio.Api.Models;
-using Portfolio.Api.Repositories.Interfaces;
+
 using Portfolio.Api.Repositories.Technologies;
 
 namespace Portfolio.Api.Services.Technologies;
 
-public class TechnologyService(ITechnologyRepository technologyRepository, ICategoryRepository categoryRepository) : ITechnologyService
+public class TechnologyService(ITechnologyRepository technologyRepository) : ITechnologyService
 {
     public async Task<ErrorOr<TechnologyResponse>> AddAsync(CreateTechnologyRequest req)
     {
-        var category = await categoryRepository.GetByIdAsync(req.CategoryId);
-        if (category is null)
-        {
-            return Error.NotFound("Category.NotFound", $"La categoría con el id {req.CategoryId} no existe");
-        }
         var technology = req.Adapt<Technology>();
         var created = await technologyRepository.AddAsync(technology);
         return created.Adapt<TechnologyResponse>();
@@ -32,9 +27,9 @@ public class TechnologyService(ITechnologyRepository technologyRepository, ICate
         return Result.Deleted;
     }
 
-    public async Task<ErrorOr<IEnumerable<TechnologyResponse>>> GetAllAsync(int? categoryId)
+    public async Task<ErrorOr<IEnumerable<TechnologyResponse>>> GetAllAsync()
     {
-        var technologies = await technologyRepository.GetAllAsync(categoryId);
+        var technologies = await technologyRepository.GetAllAsync();
         return technologies.Adapt<List<TechnologyResponse>>();
     }
 

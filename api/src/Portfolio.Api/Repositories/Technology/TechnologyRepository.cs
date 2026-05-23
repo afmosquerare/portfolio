@@ -18,14 +18,9 @@ public class TechnologyRepository(PortfolioDbContext context) : ITechnologyRepos
         await context.Technologies.Where(t => t.Id == id).ExecuteDeleteAsync();
     }
 
-    public async Task<IEnumerable<Technology>> GetAllAsync(int? categoryId)
+    public async Task<IEnumerable<Technology>> GetAllAsync()
     {
-        var query = context.Technologies.Include(t=>t.Category).AsQueryable();
-
-        if (categoryId.HasValue)
-        {
-            query = query.Where( t => t.CategoryId == categoryId );
-        }
+        var query = context.Technologies.AsQueryable();
 
         return await query.OrderBy(t => t.Name).ToListAsync();
     }
@@ -34,7 +29,6 @@ public class TechnologyRepository(PortfolioDbContext context) : ITechnologyRepos
     public async Task<Technology?> GetByIdAsync(int id)
     {
         return await context.Technologies
-            .Include(t => t.Category)
             .FirstOrDefaultAsync(t => t.Id == id);
     }
 
