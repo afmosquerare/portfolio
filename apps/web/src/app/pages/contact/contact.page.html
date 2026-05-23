@@ -11,7 +11,6 @@
   </header>
 
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-6">
-    <!-- Honeypot field -->
     <div class="absolute left-[-9999px] top-[-9999px]" aria-hidden="true">
       <label for="website_url">Website</label>
       <input type="text" id="website_url" formControlName="website_url" tabindex="-1" autocomplete="off" />

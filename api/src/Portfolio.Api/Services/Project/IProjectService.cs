@@ -10,6 +10,7 @@ public interface IProjectService
     Task<ErrorOr<Deleted>> DeleteAsync(int id);
 
     Task<ErrorOr<Created>> AddTechnologyAsync(int projectId, int technologyId);
+    Task<ErrorOr<Deleted>> RemoveTechnologyAsync(int projectId, int technologyId);
 
     Task<ErrorOr<ProjectTranslationResponse>> AddTranslationAsync(int projectId, CreateProjectTranslationRequest req);
 

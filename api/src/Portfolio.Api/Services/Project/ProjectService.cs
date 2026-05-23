@@ -39,6 +39,24 @@ public class ProjectService(IProjectRepository repository, ITechnologyRepository
         return Result.Created;
     }
 
+    public async Task<ErrorOr<Deleted>> RemoveTechnologyAsync(int projectId, int technologyId)
+    {
+        var technology = await technologyRepository.GetByIdAsync(technologyId);
+        if (technology is null)
+        {
+            return Error.NotFound("Technology.NotFound", $"La tecnologia con el id {technologyId} no existe");
+        }
+
+        var project = await repository.GetByIdAsync(projectId);
+        if (project is null)
+        {
+            return Error.NotFound("Project.NotFound", $"El proyecto con el id {projectId} no existe");
+        }
+
+        await repository.RemoveTechnologyAsync(projectId, technologyId);
+        return Result.Deleted;
+    }
+
     public async Task<ErrorOr<Deleted>> DeleteAsync(int id)
     {
         var exists = await repository.GetByIdAsync(id);
