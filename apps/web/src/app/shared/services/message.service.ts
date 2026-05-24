@@ -15,7 +15,7 @@ export interface CreateMessageDto {
 })
 export class MessageService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/api/messages`;
+  private apiUrl = `${environment.apiUrl}/messages`;
 
   sendMessage(message: CreateMessageDto): Observable<any> {
     return this.http.post(this.apiUrl, message);

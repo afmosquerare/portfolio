@@ -21,7 +21,7 @@ export interface Project {
 })
 export class ProjectService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/api/projects`;
+  private apiUrl = `${environment.apiUrl}/projects`;
 
   getProjects(): Observable<Project[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
