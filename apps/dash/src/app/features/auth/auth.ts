@@ -2,8 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-import { AuthService } from '../../core/services/auth.service';
-import { NotifierService } from '../../shared/services/notifier.service';
+import { AuthService } from '@core/services/auth.service';
+import { NotifierService } from '@shared/services/notifier.service';
 
 @Component({
   selector: 'app-auth',

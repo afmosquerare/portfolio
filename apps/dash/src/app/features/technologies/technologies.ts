@@ -3,16 +3,16 @@ import { rxResource } from '@angular/core/rxjs-interop';
 
 import { finalize } from 'rxjs/operators';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TechnologyService } from '../../core/services/technology.service';
-import { Technology } from '../../core/models/technology.model';
-import { NotifierService } from '../../shared/services/notifier.service';
-import { ConfirmService } from '../../shared/services/confirm.service';
-import { PageHeaderComponent } from '../../shared/components/page-header.component';
-import { ErrorMessageComponent } from '../../shared/components/error-message.component';
+import { TechnologyService } from '@core/services/technology.service';
+import { Technology } from '@core/models/technology.model';
+import { NotifierService } from '@shared/services/notifier.service';
+import { ConfirmService } from '@shared/services/confirm.service';
+import { PageHeaderComponent } from '@shared/components/page-header.component';
+import { ErrorMessageComponent } from '@shared/components/error-message.component';
 import { ActivatedRoute } from '@angular/router';
-import { FormUtils } from '../../shared/utils/form.utils';
-import { ModalComponent } from '../../shared/components/modal.component';
-import { TableSkeletonComponent } from '../../shared/components/table-skeleton.component';
+import { FormUtils } from '@shared/utils/form.utils';
+import { ModalComponent } from '@shared/components/modal.component';
+import { TableSkeletonComponent } from '@shared/components/table-skeleton.component';
 
 @Component({
   selector: 'app-technologies',

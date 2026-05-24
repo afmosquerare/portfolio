@@ -1,6 +1,6 @@
 import { Component, HostBinding, input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { FormUtils } from '../utils/form.utils';
+import { FormUtils } from '@shared/utils/form.utils';
 
 @Component({
     selector: 'error-message',

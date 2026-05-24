@@ -1,13 +1,13 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { ProjectService } from '../../core/services/project.service';
+import { ProjectService } from '@core/services/project.service';
 
-import { TechnologyService } from '../../core/services/technology.service';
-import { MessageService } from '../../core/services/message.service';
+import { TechnologyService } from '@core/services/technology.service';
+import { MessageService } from '@core/services/message.service';
 
 import { RouterLink } from '@angular/router';
-import { StatCardComponent } from '../../shared/components/stat-card.component';
-import { QuickActionComponent } from '../../shared/components/quick-action.component';
+import { StatCardComponent } from '@shared/components/stat-card.component';
+import { QuickActionComponent } from '@shared/components/quick-action.component';
 
 @Component({
   selector: 'app-overview',

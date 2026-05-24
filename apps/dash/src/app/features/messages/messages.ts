@@ -1,12 +1,12 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 
-import { MessageService } from '../../core/services/message.service';
-import { Message } from '../../core/models/message.model';
-import { NotifierService } from '../../shared/services/notifier.service';
-import { ConfirmService } from '../../shared/services/confirm.service';
-import { PageHeaderComponent } from '../../shared/components/page-header.component';
-import { TableSkeletonComponent } from '../../shared/components/table-skeleton.component';
+import { MessageService } from '@core/services/message.service';
+import { Message } from '@core/models/message.model';
+import { NotifierService } from '@shared/services/notifier.service';
+import { ConfirmService } from '@shared/services/confirm.service';
+import { PageHeaderComponent } from '@shared/components/page-header.component';
+import { TableSkeletonComponent } from '@shared/components/table-skeleton.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
