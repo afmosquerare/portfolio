@@ -4,6 +4,11 @@
 
 A full-stack monorepo for a personal portfolio website and its administrative dashboard.
 
+## Live Links
+
+- **Portfolio**: [https://www.andresrengifo.com](https://www.andresrengifo.com)
+- **Control Panel**: [https://dash.andresrengifo.com](https://dash.andresrengifo.com)
+
 ## Features
 
 ### Portfolio (Angular)
@@ -36,14 +41,13 @@ A full-stack monorepo for a personal portfolio website and its administrative da
 
 **Frontend (Web & Dash):**
 - Angular 21 (Signals, Standalone Components)
-- Tailwind CSS v4
-- DaisyUI v5
-- GSAP
-- Vitest
+- Tailwind CSS
+- DaisyUI
 - Iconify
 
 **Backend:**
 - .NET 8 / C# REST API
+- PostgreSQL
 - Entity Framework Core
 - Mapster
 - FluentValidation

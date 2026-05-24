@@ -35,7 +35,7 @@ import { LanguageService } from '../../../shared/services/language.service';
 })
 export class AboutTechStackComponent {
   langService = inject(LanguageService);
-  
+
   get stackCategories() {
     const t = this.langService.t();
     return [

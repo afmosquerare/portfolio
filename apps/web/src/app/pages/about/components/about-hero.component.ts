@@ -11,12 +11,12 @@ import { LanguageService } from '../../../shared/services/language.service';
           {{ langService.t().ABOUT_TITLE }}
         </h1>
         <div class="flex items-center gap-4 pb-2 pr-2">
-          <a href="https://linkedin.com/in/afmosquerare" target="_blank"
+          <a [href]="linkedinLink" target="_blank"
             class="text-base-content/60 hover:text-primary transition-colors hover:scale-110 duration-200"
             aria-label="LinkedIn">
             <span class="icon-[mdi--linkedin] text-4xl"></span>
           </a>
-          <a href="https://github.com/afmosquerare" target="_blank"
+          <a [href]="githubLink" target="_blank"
             class="text-base-content/60 hover:text-primary transition-colors hover:scale-110 duration-200"
             aria-label="GitHub">
             <span class="icon-[mdi--github] text-4xl"></span>
@@ -45,4 +45,6 @@ import { LanguageService } from '../../../shared/services/language.service';
 })
 export class AboutHeroComponent {
   langService = inject(LanguageService);
+  linkedinLink = 'https://www.linkedin.com/in/andr%C3%A9s-rengifo-331a26180/'
+  githubLink = 'https://github.com/afmosquerare'
 }
