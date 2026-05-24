@@ -29,7 +29,7 @@ import { LanguageService } from '../../../shared/services/language.service';
     </header>
 
     <section class="mb-14 grid gap-6 items-start">
-      <div class="md:col-span-2 space-y-4 text-base-content/80 text-lg leading-relaxed">
+      <div class="md:col-span-2 space-y-4 text-base-content/60 text-lg leading-relaxed">
         <p [innerHTML]="langService.t().ABOUT_P1"></p>
         <p [innerHTML]="langService.t().ABOUT_P2"></p>
       </div>
