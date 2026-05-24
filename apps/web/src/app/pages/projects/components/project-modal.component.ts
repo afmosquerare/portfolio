@@ -7,7 +7,7 @@ import { LanguageService } from '../../../shared/services/language.service';
   standalone: true,
   template: `
     <dialog class="modal modal-bottom sm:modal-middle" [class.modal-open]="isOpen()">
-      <div class="modal-box bg-base-200 border border-white/10 shadow-2xl relative p-0 overflow-hidden max-w-4xl">
+      <div class="modal-box w-11/12 bg-base-200 border border-white/10 shadow-2xl relative p-0 overflow-hidden max-w-4xl">
         <button (click)="isOpen.set(false)"
           class="btn btn-md p-0 btn-circle btn-ghost absolute right-2 top-2 z-10 bg-base-300/50 hover:bg-base-300">✕</button>
         <img [src]="project().imageUrl" [alt]="langService.currentLang() === 'en' ? project().titleEn : project().titleEs"
@@ -25,14 +25,14 @@ import { LanguageService } from '../../../shared/services/language.service';
 
           <p class="py-4 text-base-content/80 leading-relaxed text-lg whitespace-pre-line">{{ langService.currentLang() === 'en' ? project().descriptionEn : project().descriptionEs }}</p>
           
-          <div class="modal-action mt-8 flex gap-4 justify-end">
+          <div class="modal-action mt-8 flex flex-col sm:flex-row gap-4 justify-end">
             @if (project().sourceCodeUrl) {
-              <a [href]="project().sourceCodeUrl" target="_blank" class="btn btn-outline uppercase tracking-widest">
+              <a [href]="project().sourceCodeUrl" target="_blank" class="btn btn-outline uppercase tracking-widest w-full sm:w-auto">
                 <span class="icon-[lucide--code-2]"></span> {{ langService.t().SOURCE_CODE }}
               </a>
             }
             @if (project().liveDemoUrl) {
-              <a [href]="project().liveDemoUrl" target="_blank" class="btn btn-primary uppercase tracking-widest">
+              <a [href]="project().liveDemoUrl" target="_blank" class="btn btn-primary uppercase tracking-widest w-full sm:w-auto">
                 {{ langService.t().LIVE_DEMO }} <span class="icon-[lucide--arrow-right]"></span>
               </a>
             }

@@ -66,7 +66,9 @@ export const TRANSLATIONS = {
     FORM_SENDING: 'Sending...',
     FORM_NAME_PLACEHOLDER: 'e.g. Alex Johnson',
     FORM_EMAIL_PLACEHOLDER: 'hello@awesomecompany.com',
-    FORM_MESSAGE_PLACEHOLDER: "Hi! We'd love to chat with you about a potential role / project..."
+    FORM_MESSAGE_PLACEHOLDER: "Hi! We'd love to chat with you about a potential role / project...",
+    MSG_SUCCESS: "Message sent successfully! I'll get back to you soon.",
+    MSG_ERROR: "Oops! Something went wrong. Please try again or use direct email."
   },
   es: {
     // Navbar & Common
@@ -135,6 +137,8 @@ export const TRANSLATIONS = {
     FORM_SENDING: 'Enviando...',
     FORM_NAME_PLACEHOLDER: 'ej. Alejandro Pérez',
     FORM_EMAIL_PLACEHOLDER: 'hola@empresa-increible.com',
-    FORM_MESSAGE_PLACEHOLDER: '¡Hola! Nos encantaría hablar contigo sobre un posible rol / proyecto...'
+    FORM_MESSAGE_PLACEHOLDER: '¡Hola! Nos encantaría hablar contigo sobre un posible rol / proyecto...',
+    MSG_SUCCESS: '¡Mensaje enviado con éxito! Te responderé pronto.',
+    MSG_ERROR: '¡Uy! Algo salió mal. Por favor intenta de nuevo o envíame un correo directo.'
   }
 };

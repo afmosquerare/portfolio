@@ -50,10 +50,10 @@ export default class ContactPage {
 
     try {
       await firstValueFrom(this.messageService.sendMessage({ name, email, body, websiteUrl }));
-      this.notifier.success("Message sent successfully! I'll get back to you soon.");
+      this.notifier.success(this.langService.t().MSG_SUCCESS);
       this.contactForm.reset();
     } catch (error) {
-      this.notifier.error("Oops! Something went wrong. Please try again or use direct email.");
+      this.notifier.error(this.langService.t().MSG_ERROR);
     } finally {
       this.isSubmitting.set(false);
     }
