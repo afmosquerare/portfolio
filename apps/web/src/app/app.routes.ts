@@ -4,6 +4,7 @@ import { HomePage } from './pages/home/home.page';
 export const routes: Routes = [
     {
         path: 'home',
+        title: 'Andrés Rengifo',
         component: HomePage
     },
     {

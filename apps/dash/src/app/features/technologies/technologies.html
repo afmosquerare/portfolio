@@ -58,7 +58,7 @@
     <form [formGroup]="techForm" (ngSubmit)="saveTechnology()">
       <div class="form-control w-full mb-4">
         <label class="label"><span class="label-text text-base-content/70">Name</span></label>
-        <input type="text" formControlName="name" placeholder="e.g. Angular, React..."
+        <input type="text" formControlName="name" placeholder="Angular, React, C#..."
           class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary transition-colors text-white"
           [class.input-error]="formUtils.isValidField(techForm, 'name')" />
         <error-message class="mt-1" [control]="techForm.controls.name" />

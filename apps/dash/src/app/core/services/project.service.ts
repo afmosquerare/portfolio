@@ -43,4 +43,8 @@ export class ProjectService {
   removeTechnology(projectId: number, technologyId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${projectId}/technologies/${technologyId}`);
   }
+
+  updateTranslation(projectId: number, lang: string, translation: { title: string; description: string }): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}/${projectId}/translations/${lang}`, translation);
+  }
 }

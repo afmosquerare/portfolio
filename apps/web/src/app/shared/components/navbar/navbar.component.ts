@@ -1,6 +1,8 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   imports: [RouterLinkActive, RouterLink],
@@ -8,10 +10,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
-  items = [
-  { label: 'Home', path: '/home' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'About', path: '/about' },
-  { label: 'Contact', path: '/contact' },
-];
+  public langService = inject(LanguageService);
+
+  get items() {
+    return [
+      { label: this.langService.t().NAV_HOME, path: '/home', icon: 'icon-[lucide--home]' },
+      { label: this.langService.t().NAV_PROJECTS, path: '/projects', icon: 'icon-[lucide--folder]' },
+      { label: this.langService.t().NAV_ABOUT, path: '/about', icon: 'icon-[lucide--user]' },
+      { label: this.langService.t().NAV_CONTACT, path: '/contact', icon: 'icon-[lucide--mail]' },
+    ];
+  }
 }

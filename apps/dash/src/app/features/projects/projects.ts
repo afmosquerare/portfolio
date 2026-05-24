@@ -155,15 +155,21 @@ export default class Projects implements OnInit {
     const toAdd = desiredTechIds.filter(id => !currentTechIds.includes(id));
     const toRemove = currentTechIds.filter(id => !desiredTechIds.includes(id));
 
-    if (toAdd.length === 0 && toRemove.length === 0) {
-      this.finishSave();
-      return;
-    }
-
-    const tasks = [
+    const tasks: any[] = [
       ...toAdd.map(techId => this.projectService.addTechnology(projectId, techId)),
       ...toRemove.map(techId => this.projectService.removeTechnology(projectId, techId))
     ];
+
+    if (this.editingId()) {
+      const formValue = this.projectForm.value;
+      tasks.push(this.projectService.updateTranslation(projectId, 'en', { title: formValue.titleEn!, description: formValue.descriptionEn! }));
+      tasks.push(this.projectService.updateTranslation(projectId, 'es', { title: formValue.titleEs!, description: formValue.descriptionEs! }));
+    }
+
+    if (tasks.length === 0) {
+      this.finishSave();
+      return;
+    }
 
     forkJoin(tasks).pipe(finalize(() => this.finishSave())).subscribe();
   }

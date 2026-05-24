@@ -54,7 +54,7 @@
             </span>
           </td>
           <td class="text-right">
-            <div class="flex flex-wrap justify-end gap-2">
+            <div class="flex justify-end gap-2">
               <button (click)="editProject(project)"
                 class="btn btn-sm btn-ghost hover:bg-white/5 hover:text-primary btn-square tooltip" data-tip="Edit">
                 <span class="icon-[mdi--pencil] text-lg"></span>
@@ -91,14 +91,15 @@
             <div class="form-control w-full mb-4">
               <label class="label"><span class="label-text text-base-content/70">Project Title
                   (English)</span></label>
-              <input type="text" formControlName="titleEn" placeholder="e.g. My Awesome App"
+              <input type="text" formControlName="titleEn" placeholder="Portfolio Dashboard v2"
                 class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white"
                 [class.input-error]="formUtils.isValidField(projectForm, 'titleEn')" />
               <error-message class="mt-1" [control]="projectForm.controls.titleEn" />
             </div>
             <div class="form-control flex flex-col w-full">
               <label class="label"><span class="label-text text-base-content/70">Description (English)</span></label>
-              <textarea formControlName="descriptionEn" placeholder="Project details..."
+              <textarea formControlName="descriptionEn"
+                placeholder="An admin panel to manage my projects, technologies, and messages..."
                 class="textarea textarea-bordered bg-base-300 border-white/10 focus:border-primary text-white h-24"
                 [class.textarea-error]="formUtils.isValidField(projectForm, 'descriptionEn')"></textarea>
               <error-message class="mt-1" [control]="projectForm.controls.descriptionEn" />
@@ -110,14 +111,15 @@
             <div class="form-control w-full mb-4">
               <label class="label"><span class="label-text text-base-content/70">Título del Proyecto
                   (Español)</span></label>
-              <input type="text" formControlName="titleEs" placeholder="ej. Mi Gran App"
+              <input type="text" formControlName="titleEs" placeholder="Panel de Control Portafolio v2"
                 class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white"
                 [class.input-error]="formUtils.isValidField(projectForm, 'titleEs')" />
               <error-message class="mt-1" [control]="projectForm.controls.titleEs" />
             </div>
             <div class="form-control flex flex-col w-full">
               <label class="label"><span class="label-text text-base-content/70">Descripción (Español)</span></label>
-              <textarea formControlName="descriptionEs" placeholder="Detalles del proyecto..."
+              <textarea formControlName="descriptionEs"
+                placeholder="Un panel de administración para gestionar mis proyectos, tecnologías y mensajes..."
                 class="textarea textarea-bordered bg-base-300 border-white/10 focus:border-primary text-white h-24"
                 [class.textarea-error]="formUtils.isValidField(projectForm, 'descriptionEs')"></textarea>
               <error-message class="mt-1" [control]="projectForm.controls.descriptionEs" />
@@ -130,7 +132,7 @@
           <div class="flex gap-2">
             <input type="file" (change)="onFileSelected($event)" accept="image/*"
               class="file-input file-input-bordered file-input-primary w-full max-w-xs text-sm" />
-            <input type="url" formControlName="imageUrl" placeholder="or enter image URL..."
+            <input type="url" formControlName="imageUrl" placeholder="https://imgur.com/screenshot.png"
               class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white" />
           </div>
           @if (isUploading()) {
@@ -142,13 +144,13 @@
 
         <div class="form-control w-full">
           <label class="label"><span class="label-text text-base-content/70">GitHub URL</span></label>
-          <input type="url" formControlName="githubUrl" placeholder="https://github.com/..."
+          <input type="url" formControlName="githubUrl" placeholder="https://github.com/usuario/repo"
             class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white" />
         </div>
 
         <div class="form-control w-full">
           <label class="label"><span class="label-text text-base-content/70">Live Demo URL</span></label>
-          <input type="url" formControlName="demoUrl" placeholder="https://..."
+          <input type="url" formControlName="demoUrl" placeholder="https://mi-proyecto.com"
             class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white" />
         </div>
 

@@ -15,16 +15,16 @@ export class Auth {
   private authService = inject(AuthService);
   private notifierService = inject(NotifierService);
 
-  username = '';
-  password = '';
+  username = signal('');
+  password = signal('');
   isLoading = signal(false);
 
   login(event: Event) {
     event.preventDefault();
-    if (!this.username || !this.password) return;
+    if (!this.username() || !this.password()) return;
 
     this.isLoading.set(true);
-    this.authService.login({ username: this.username, password: this.password }).pipe(
+    this.authService.login({ username: this.username(), password: this.password() }).pipe(
       finalize(() => this.isLoading.set(false))
     ).subscribe((res) => {
       this.notifierService.success('Welcome back!');

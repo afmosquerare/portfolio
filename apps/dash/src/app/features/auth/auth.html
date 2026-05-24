@@ -8,10 +8,10 @@
       </div>
       <form (submit)="login($event)" class="flex flex-col gap-5">
         <div class="form-control">
-          <label class="label pt-0"><span class="label-text font-medium text-white/80">Email</span></label>
+          <label class="label pt-0"><span class="label-text font-medium text-white/80">Username</span></label>
           <label
             class="input input-bordered bg-base-300/50 border-white/10 flex items-center gap-3 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all rounded-xl h-12">
-            <span class="icon-[mdi--email] text-base-content/50 text-lg"></span>
+            <span class="icon-[mdi--account] text-base-content/50 text-lg"></span>
             <input type="text" name="username" [(ngModel)]="username"
               class="grow bg-transparent border-0 focus:ring-0 text-white" placeholder="admin" required />
           </label>

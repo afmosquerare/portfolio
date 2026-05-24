@@ -7,6 +7,11 @@ export interface AuthResponse {
   token: string;
 }
 
+export interface LoginCredentials {
+  username: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +19,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private apiUrl = `${environment.apiUrl}/auth`;
 
-  login(credentials: any): Observable<AuthResponse> {
+  login(credentials: LoginCredentials): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(this.apiUrl, credentials).pipe(
       tap(res => {
         if (res.token) {

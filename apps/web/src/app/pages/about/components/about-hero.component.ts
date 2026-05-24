@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../../shared/services/language.service';
 
 @Component({
   selector: 'about-hero',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
     <header class="mb-8">
       <div class="flex justify-between items-end mb-4">
         <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter text-base-content leading-none">
-          About
+          {{ langService.t().ABOUT_TITLE }}
         </h1>
         <div class="flex items-center gap-4 pb-2 pr-2">
           <a href="https://linkedin.com/in/afmosquerare" target="_blank"
@@ -23,31 +24,25 @@ import { Component } from '@angular/core';
         </div>
       </div>
       <p class="text-base-content/60 text-xl font-light leading-relaxed ">
-        My name is Andrés Rengifo and I'm a full-stack software developer from Medellín, Colombia, with experience
-        shipping scalable and user-centered applications.
+        {{ langService.t().ABOUT_SUBTITLE }}
       </p>
     </header>
 
     <section class="mb-14 grid gap-6 items-start">
       <div class="md:col-span-2 space-y-4 text-base-content/80 text-lg leading-relaxed">
-        <p>
-          I'm currently studying IT Engineering and actively looking for my next role—whether it's remote, hybrid, or
-          on-site. Specialized in <strong>Angular</strong> and <strong>.NET Core</strong>, I am passionate about creating
-          efficient, clean solutions and always strive to apply SOLID principles in every line of code.
-        </p>
-        <p>
-          Outside of code, I enjoy playing basketball, exploring hiking trails, and playing video games. Lately, I've been
-          dedicating most of my time to improving my software engineering skills and training on the court.
-        </p>
+        <p [innerHTML]="langService.t().ABOUT_P1"></p>
+        <p [innerHTML]="langService.t().ABOUT_P2"></p>
       </div>
       <div class="flex items-start">
         <a href="/cv.pdf" target="_blank"
           class="btn btn-primary text-white rounded-full font-bold w-full sm:w-auto hover:scale-105 ">
           <span class="icon-[lucide--download] text-xl"></span>
-          Download CV
+          {{ langService.t().ABOUT_CV }}
         </a>
       </div>
     </section>
   `
 })
-export class AboutHeroComponent { }
+export class AboutHeroComponent {
+  langService = inject(LanguageService);
+}

@@ -1,17 +1,12 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  viewChild,
-  viewChildren,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, AfterViewInit, viewChild, viewChildren, inject, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { LanguageService } from '../../shared/services/language.service';
+import { LanguageToggleComponent } from '../../shared/components/language-toggle/language-toggle.component';
 
 @Component({
-  imports: [RouterLink],
+  imports: [RouterLink, LanguageToggleComponent],
   templateUrl: './home.page.html',
   styles: `
     :host {
@@ -23,20 +18,32 @@ export class HomePage implements OnInit, AfterViewInit {
   private title = viewChild.required<ElementRef>('heroTitle');
   private subtitle = viewChild.required<ElementRef>('heroSubtitle');
   private buttons = viewChildren<ElementRef>('heroButton');
-  ngOnInit(): void {}
+  public langService = inject(LanguageService);
+  private splitTitle: any;
+
+  constructor() {
+    effect(() => {
+      this.langService.currentLang();
+      if (this.splitTitle) {
+        this.title().nativeElement.innerText = this.langService.t().HOME_TITLE;
+      }
+    });
+  }
+
+  ngOnInit(): void { }
   ngAfterViewInit(): void {
     gsap.registerPlugin(SplitText);
     document.fonts.ready.then(() => {
       gsap.set(this.title().nativeElement, { opacity: 1 });
 
-      const splitTitle = SplitText.create(this.title().nativeElement, {
+      this.splitTitle = SplitText.create(this.title().nativeElement, {
         type: 'words',
         wordsClass: 'word++',
       });
 
       gsap
         .timeline({ defaults: { ease: 'power3.out' } })
-        .from(splitTitle.words, {
+        .from(this.splitTitle.words, {
           y: -200,
           opacity: 0,
           rotation: 'random(-80, 80)',

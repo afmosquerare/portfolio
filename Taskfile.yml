@@ -29,6 +29,13 @@ tasks:
     desc: Run everything
     deps: [api, dash, web]
 
+  install:
+    desc: Install all dependencies for backend and frontends
+    cmds:
+      - dotnet restore {{.APIPATH}}
+      - cd {{.WEBPATH}} && npm install
+      - cd {{.DASHPATH}} && npm install
+
 
 
   

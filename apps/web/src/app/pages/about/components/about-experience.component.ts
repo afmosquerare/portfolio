@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../../shared/services/language.service';
 
 @Component({
   selector: 'about-experience',
@@ -6,10 +7,10 @@ import { Component } from '@angular/core';
   template: `
     <section class="mb-20">
       <h2 class="text-4xl font-bold tracking-tighter mb-10 flex items-center gap-3">
-        Experience
+        {{ langService.t().ABOUT_EXP_TITLE }}
       </h2>
       <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-        @for (exp of experiences; track $index) {
+        @for (exp of langService.t().EXPERIENCES; track $index) {
         <li>
           <div class="timeline-middle">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 text-primary">
@@ -26,7 +27,7 @@ import { Component } from '@angular/core';
               {{ exp.description }}
             </p>
           </div>
-          @if ($index !== experiences.length - 1) {
+          @if ($index !== langService.t().EXPERIENCES.length - 1) {
           <hr class="bg-primary/20" />
           }
         </li>
@@ -36,24 +37,5 @@ import { Component } from '@angular/core';
   `
 })
 export class AboutExperienceComponent {
-  experiences = [
-    {
-      role: 'Full Stack Developer | Freelance',
-      company: 'Remote',
-      date: 'Jun 2024 – Oct 2025',
-      description: 'Designed and developed scalable enterprise web applications using Angular (v12-v20) and .NET Core. Led the end-to-end creation of complex appointment platforms and migrated heavy dynamic forms.'
-    },
-    {
-      role: 'Full Stack Developer',
-      company: 'Ekisa | Hybrid',
-      date: 'Mar 2023 – Jun 2024',
-      description: 'Optimized the performance of Angular 12+ SPAs by implementing advanced rendering strategies and integrating with .NET Core REST APIs. Developed an internal UI component library using DevExtreme, eliminating code duplication and accelerating feature delivery.'
-    },
-    {
-      role: 'Software Developer Intern',
-      company: 'Ekisa | On-site',
-      date: 'Sep 2022 – Mar 2023',
-      description: 'Built reactive user interfaces in Angular 12+ and consumed .NET Core APIs to support internal business workflows. Collaborated on the migration and validation of dynamic forms.'
-    }
-  ];
+  langService = inject(LanguageService);
 }

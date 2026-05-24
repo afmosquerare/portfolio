@@ -5,6 +5,7 @@ import { NotifierService } from '@notifications/notifier.service';
 import { ErrorMessageComponent } from '@app/shared/components/error-message/error.message.component';
 import { FormUtils } from '@utils/form.utils';
 import { firstValueFrom } from 'rxjs';
+import { LanguageService } from '../../shared/services/language.service';
 
 @Component({
   templateUrl: './contact.page.html',
@@ -15,6 +16,7 @@ export default class ContactPage {
   private fb = inject(FormBuilder);
   private messageService = inject(MessageService);
   private notifier = inject(NotifierService);
+  public langService = inject(LanguageService);
 
   isSubmitting = signal(false);
 
