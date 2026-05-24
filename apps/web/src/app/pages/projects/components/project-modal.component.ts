@@ -6,14 +6,14 @@ import { LanguageService } from '../../../shared/services/language.service';
   selector: 'p-project-modal',
   standalone: true,
   template: `
-    <dialog class="modal modal-bottom sm:modal-middle" [class.modal-open]="isOpen()">
+    <dialog class="modal" [class.modal-open]="isOpen()">
       <div class="modal-box w-11/12 bg-base-200 border border-white/10 shadow-2xl relative p-0 overflow-hidden max-w-4xl">
         <button (click)="isOpen.set(false)"
           class="btn btn-md p-0 btn-circle btn-ghost absolute right-2 top-2 z-10 bg-base-300/50 hover:bg-base-300">✕</button>
         <img [src]="project().imageUrl" [alt]="langService.currentLang() === 'en' ? project().titleEn : project().titleEs"
-          class="w-full h-64 sm:h-80 md:h-96 object-cover object-center" />
-        <div class="p-8 md:p-12">
-          <h3 class="font-bold text-3xl md:text-4xl mb-6">{{ langService.currentLang() === 'en' ? project().titleEn : project().titleEs }}</h3>
+          class="w-full h-56 sm:h-80 md:h-96 object-cover object-center" />
+        <div class="p-6 md:p-12">
+          <h3 class="font-bold text-2xl md:text-4xl mb-6">{{ langService.currentLang() === 'en' ? project().titleEn : project().titleEs }}</h3>
           
           <div class="flex flex-wrap items-center gap-2 mb-8">
             @for (tech of project().technologies; track tech.name) {
@@ -23,16 +23,18 @@ import { LanguageService } from '../../../shared/services/language.service';
             }
           </div>
 
-          <p class="py-4 text-base-content/80 leading-relaxed text-lg whitespace-pre-line">{{ langService.currentLang() === 'en' ? project().descriptionEn : project().descriptionEs }}</p>
+          <div class="max-h-[30vh] sm:max-h-[40vh] overflow-y-auto pr-4 mb-4 mt-4 scrollbar-thin scrollbar-thumb-base-content/20 scrollbar-track-transparent">
+            <p class="py-2 text-base-content/80 leading-relaxed text-base sm:text-lg whitespace-pre-line">{{ langService.currentLang() === 'en' ? project().descriptionEn : project().descriptionEs }}</p>
+          </div>
           
-          <div class="modal-action mt-8 flex flex-col sm:flex-row gap-4 justify-end">
+          <div class="modal-action mt-8 flex flex-wrap gap-4 justify-end">
             @if (project().sourceCodeUrl) {
-              <a [href]="project().sourceCodeUrl" target="_blank" class="btn btn-outline uppercase tracking-widest w-full sm:w-auto">
+              <a [href]="project().sourceCodeUrl" target="_blank" class="btn btn-outline uppercase tracking-widest">
                 <span class="icon-[lucide--code-2]"></span> {{ langService.t().SOURCE_CODE }}
               </a>
             }
             @if (project().liveDemoUrl) {
-              <a [href]="project().liveDemoUrl" target="_blank" class="btn btn-primary uppercase tracking-widest w-full sm:w-auto">
+              <a [href]="project().liveDemoUrl" target="_blank" class="btn btn-primary uppercase tracking-widest">
                 {{ langService.t().LIVE_DEMO }} <span class="icon-[lucide--arrow-right]"></span>
               </a>
             }
