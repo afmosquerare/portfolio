@@ -12,7 +12,7 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddOutputCache();
 builder.Services.AddDbContext<PortfolioDbContext>(options =>
 {
-   options.UseSqlServer( builder.Configuration["ConnectionStrings:Default"]  ); 
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:Default"]);
 });
 
 var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
@@ -45,17 +45,17 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 app.UseOutputCache();
-app.UseAuthentication(); 
-app.UseAuthorization();  
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 
 
-using ( var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     var repositoy = scope.ServiceProvider.GetRequiredService<IUserRepository>();
     var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
     await DbSeeder.SeedAsync(repositoy, config);
-    
+
 }
 app.Run();
 

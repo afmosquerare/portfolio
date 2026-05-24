@@ -28,7 +28,7 @@ export class ProjectService {
       map(projects => projects.map(p => {
         const enTranslation = p.translations?.find((t: any) => t.languageCode === 'en');
         const esTranslation = p.translations?.find((t: any) => t.languageCode === 'es');
-        
+
         return {
           ...p,
           titleEn: enTranslation?.title || 'No Title',

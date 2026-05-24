@@ -1,16 +1,14 @@
 services:
-  sql:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver2022
+  db:
+    image: postgres:16-alpine
+    container_name: postgres_portfolio
     ports:
-      - "1433:1433"
+      - "5432:5432"
     environment:
-      ACCEPT_EULA: "1"
-      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
-      MSSQL_PID: "Developer"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: MyStrongPass123
+      POSTGRES_DB: PortfolioDb
     volumes:
-      - sqlserverdata:/var/opt/mssql
+      - postgresdata:/var/lib/postgresql/data
 volumes:
-  sqlserverdata:
-# Levantar los contenedores en segundo plano: docker-compose up -d
-# Apagar y eliminar contenedores (no borra los volúmenes): docker-compose down
+  postgresdata:

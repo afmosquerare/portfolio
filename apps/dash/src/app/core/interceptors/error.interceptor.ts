@@ -15,13 +15,19 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.status === 401) {
         authService.logout();
         router.navigate(['/auth/login']);
-        notifierService.error('Session expired. Please log in again.');
+        notifierService.error('Ops,you need to log in again.');
       } else if (error.status === 403) {
-        notifierService.error('You do not have permission to perform this action.');
+        notifierService.error('Ops, you don\'t have permission to perform this action.');
+      } else if (error.status >= 500) {
+        notifierService.error('Ops, a server error occurred. Check backend logs for details.');
       } else if (error.error && typeof error.error === 'string') {
-        notifierService.error(error.error);
+        notifierService.error(error.error.length > 150 ? 'An unexpected error occurred.' : error.error);
+      } else if (error.error?.errors) {
+        const errorMessages = Object.values(error.error.errors)
+          .flat()
+          .join(' ');
+        notifierService.error(errorMessages);
       } else if (error.error?.title) {
-        // Handle standard ASP.NET Core ProblemDetails
         notifierService.error(error.error.title);
       } else {
         notifierService.error('An unexpected error occurred. Please try again.');
