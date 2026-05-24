@@ -5,10 +5,10 @@ import { ImageLightboxComponent } from '../../../shared/components/image-lightbo
 import { ProjectModalComponent } from './project-modal.component';
 
 @Component({
-    selector: 'p-project-card',
-    standalone: true,
-    imports: [ImageLightboxComponent, ProjectModalComponent],
-    template: `
+  selector: 'p-project-card',
+  standalone: true,
+  imports: [ImageLightboxComponent, ProjectModalComponent],
+  template: `
 <div class="group bg-transparent border border-white/5 rounded-3xl overflow-hidden transition-all duration-500 flex"
   [class.flex-col]="true" [class.md:flex-row]="view() === 'list'">
   <div class="relative overflow-hidden shrink-0 border-white/5 cursor-pointer" [class.w-full]="true"
@@ -61,9 +61,9 @@ import { ProjectModalComponent } from './project-modal.component';
     `
 })
 export class ProjectCardComponent {
-    view = input<'grid' | 'list'>('grid');
-    project = input.required<Project>();
-    langService = inject(LanguageService);
-    isModalOpen = signal(false);
-    isFullscreen = signal(false);
-}
+  view = input<'grid' | 'list'>('grid');
+  project = input.required<Project>();
+  langService = inject(LanguageService);
+  isModalOpen = signal(false);
+  isFullscreen = signal(false);
+} 
