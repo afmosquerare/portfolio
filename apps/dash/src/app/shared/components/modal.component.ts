@@ -4,8 +4,8 @@ import { Component, ElementRef, viewChild, input, output } from '@angular/core';
   selector: 'app-modal',
   standalone: true,
   template: `
-    <dialog #dialog class="modal">
-      <div class="modal-box bg-base-200 border border-white/10" [class]="customClasses()">
+    <dialog #dialog class="modal py-8 px-4 sm:p-0">
+      <div class="modal-box w-full max-w-2xl bg-base-200 border border-white/10 overflow-y-auto scrollbar-thin scrollbar-thumb-base-content/20" [class]="customClasses()">
         @if (title()) {
           <h3 class="font-bold text-xl text-white mb-6">{{ title() }}</h3>
         }
