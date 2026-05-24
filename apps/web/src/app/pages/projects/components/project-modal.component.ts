@@ -6,12 +6,13 @@ import { LanguageService } from '../../../shared/services/language.service';
   selector: 'p-project-modal',
   standalone: true,
   template: `
-    <dialog class="modal py-8 px-4 sm:p-0" [class.modal-open]="isOpen()">
-      <div class="modal-box w-full max-w-4xl bg-base-200 border border-white/10 shadow-2xl relative p-0 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-base-content/20">
+    <dialog class="modal" [class.modal-open]="isOpen()">
+      <div class="modal-box w-[calc(100%-2rem)] max-w-4xl max-h-[calc(100vh-4rem)] bg-base-200 border border-white/10 shadow-2xl relative p-0 overflow-hidden flex flex-col rounded-2xl">
         <button (click)="isOpen.set(false)"
-          class="btn btn-md p-0 btn-circle btn-ghost absolute right-2 top-2 z-10 bg-base-300/50 hover:bg-base-300">✕</button>
-        <img [src]="project().imageUrl" [alt]="langService.currentLang() === 'en' ? project().titleEn : project().titleEs"
-          class="w-full h-56 sm:h-80 md:h-96 object-cover object-center" />
+          class="btn btn-md p-0 btn-circle btn-ghost absolute right-3 top-3 sm:right-4 sm:top-4 z-20 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm border-none">✕</button>
+        <div class="overflow-y-auto overflow-x-hidden flex-1 scrollbar-thin scrollbar-thumb-base-content/20">
+          <img [src]="project().imageUrl" [alt]="langService.currentLang() === 'en' ? project().titleEn : project().titleEs"
+            class="w-full h-56 sm:h-80 md:h-96 object-cover object-center" />
         <div class="p-6 md:p-12">
           <h3 class="font-bold text-2xl md:text-4xl mb-6">{{ langService.currentLang() === 'en' ? project().titleEn : project().titleEs }}</h3>
 
@@ -28,6 +29,7 @@ import { LanguageService } from '../../../shared/services/language.service';
                 {{ langService.t().LIVE_DEMO }} <span class="icon-[lucide--arrow-right]"></span>
               </a>
             }
+          </div>
           </div>
         </div>
       </div>
