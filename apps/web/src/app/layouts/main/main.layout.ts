@@ -7,7 +7,7 @@ import { LanguageToggleComponent } from '../../shared/components/language-toggle
   template: `
     <p-navbar />
     <app-language-toggle />
-    <main class="pt-36 pb-24 px-6 max-w-6xl mx-auto">
+    <main class="pt-8 md:pt-36 pb-24 md:pb-12 px-6 max-w-6xl mx-auto">
       <router-outlet />
     </main>
   `,
