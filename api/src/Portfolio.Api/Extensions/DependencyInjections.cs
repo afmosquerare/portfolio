@@ -34,7 +34,7 @@ public static class DependencyInjections
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAuthService, AuthService>();
 
-        services.AddScoped<IStorageService, AzureStorageService>();
+        services.AddScoped<IStorageService, CloudinaryStorageService>();
         return services;
     }
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from '@core/services/auth.service';
 import { NotifierService } from '@shared/services/notifier.service';
+import { notiq } from 'notique';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
@@ -27,10 +28,12 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           .flat()
           .join(' ');
         notifierService.error(errorMessages);
+      } else if (error.error?.detail) {
+        notifierService.error(error.error.detail);
       } else if (error.error?.title) {
         notifierService.error(error.error.title);
       } else {
-        notifierService.error('An unexpected error occurred. Please try again.');
+        notiq.error({ message: 'An unexpected error occurred. Please try again.', position: 'top-center', duration: 5000 });
       }
 
       return throwError(() => error);

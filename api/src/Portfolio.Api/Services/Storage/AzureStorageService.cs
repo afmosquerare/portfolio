@@ -22,9 +22,9 @@ public class AzureStorageService(IConfiguration config) : IStorageService
             await blobClient.UploadAsync(stream, new BlobHttpHeaders { ContentType = file.ContentType });
             return blobClient.Uri.ToString();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return Error.Failure("Storage.UploadFailed", "Error al subir la imagen");
+            return Error.Failure("Storage.UploadFailed", $"Error al subir la imagen: {ex.Message}");
         }
     }
     public async Task<ErrorOr<Deleted>> DeleteAsync(string fileUrl, string containerName)
@@ -38,10 +38,9 @@ public class AzureStorageService(IConfiguration config) : IStorageService
             await blobClient.DeleteIfExistsAsync();
             return Result.Deleted;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            return Error.Failure("Storage.DeleteFailed", "Error al eliminar la imagen");
+            return Error.Failure("Storage.DeleteFailed", $"Error al eliminar la imagen: {ex.Message}");
         }
     }
 
