@@ -47,7 +47,8 @@ export class AboutTechStackComponent {
           { name: 'RxJS', icon: 'icon-[simple-icons--reactivex]', color: 'text-pink-500' },
           { name: 'PrimeNG', icon: 'icon-[simple-icons--primeng]', color: 'text-red-500' },
           { name: 'TailwindCSS', icon: 'icon-[mdi--tailwind]', color: 'text-[#06B6D4]' },
-          { name: 'DevExtreme', icon: 'icon-[simple-icons--devexpress]', color: 'text-[#F98A1F]' }
+          { name: 'DevExtreme', icon: 'icon-[simple-icons--devexpress]', color: 'text-[#F98A1F]' },
+          { name: 'Astro', icon: 'icon-[simple-icons--astro]', color: 'text-[#FF5D01]' }
         ]
       },
       {
@@ -74,7 +75,8 @@ export class AboutTechStackComponent {
         items: [
           { name: 'SQL Server', icon: 'icon-[mdi--database]', color: 'text-[#CC292B]' },
           { name: 'PostgreSQL', icon: 'icon-[simple-icons--postgresql]', color: 'text-[#4169E1]' },
-          { name: 'Azure', icon: 'icon-[mdi--microsoft-azure]', color: 'text-[#0089D6]' }
+          { name: 'Azure', icon: 'icon-[mdi--microsoft-azure]', color: 'text-[#0089D6]' },
+          { name: 'Cloudinary', icon: 'icon-[simple-icons--cloudinary]', color: 'text-[#3448C5]' }
         ]
       },
       {
@@ -83,7 +85,8 @@ export class AboutTechStackComponent {
           { name: 'Git', icon: 'icon-[mdi--git]', color: 'text-[#F1502F]' },
           { name: 'GitHub', icon: 'icon-[mdi--github]', color: 'text-[#FFFFFF]' },
           { name: 'Docker', icon: 'icon-[mdi--docker]', color: 'text-[#2496ED]' },
-          { name: 'Taskfile', icon: 'icon-[lucide--terminal-square]', color: 'text-[#29BEB0]' }
+          { name: 'Taskfile', icon: 'icon-[lucide--terminal-square]', color: 'text-[#29BEB0]' },
+          { name: 'Postman', icon: 'icon-[simple-icons--postman]', color: 'text-[#FF6C37]' },
         ]
       }
     ];
