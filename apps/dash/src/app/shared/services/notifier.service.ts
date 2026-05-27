@@ -1,35 +1,23 @@
-import { Injectable, signal } from '@angular/core';
-import { Subscription, timer } from 'rxjs';
-
-type NotifierType = 'warn' | 'error' | 'success';
+import { Injectable } from '@angular/core';
+import { notique } from 'notique';
 
 @Injectable({ providedIn: 'root' })
 export class NotifierService {
-    constructor() { }
-    public visible = signal(false);
-    public type = signal<NotifierType>('success');
-    public message = signal("");
-    private hideSub?: Subscription;
 
-    public error(message: string, duration?: number) {
-        this.handleNotify(message, 'error', duration)
+
+    constructor() {
+        notique.config({ position: 'top-center', showProgress: false, duration: 6000, className: 'rounded-none!' });
     }
 
-    public success(message: string, duration?: number) {
-        this.handleNotify(message, 'success', duration)
+    public error(message: string, title = 'An error has occurred') {
+        notique.error({ message: title, description: message });
+    }
+    public success(message: string, title = 'Done!') {
+        notique.success({ message: title, description: message });
+    }
+    public warn(message: string, title = 'Warning') {
+        notique.warning({ message: title, description: message });
     }
 
-    public warn(message: string, duration?: number) {
-        this.handleNotify(message, 'warn', duration)
-    }
 
-    private handleNotify(message: string, type: NotifierType, duration = 4000) {
-        this.message.set(message);
-        this.visible.set(true);
-        this.type.set(type)
-        this.hideSub?.unsubscribe();
-        this.hideSub = timer(duration).subscribe(() => {
-            this.visible.set(false);
-        })
-    }
 }
