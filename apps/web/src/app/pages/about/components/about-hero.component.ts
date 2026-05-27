@@ -35,7 +35,7 @@ import { LanguageService } from '../../../shared/services/language.service';
       </div>
       <div class="flex items-start">
         <a href="/cv.pdf" target="_blank"
-          class="btn btn-primary text-white rounded-full font-bold w-full sm:w-auto hover:scale-105 ">
+          class="btn btn-primary w-full sm:w-auto">
           <span class="icon-[lucide--download] text-xl"></span>
           {{ langService.t().ABOUT_CV }}
         </a>

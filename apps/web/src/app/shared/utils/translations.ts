@@ -48,7 +48,7 @@ export const TRANSLATIONS = {
 
     // Projects Page
     PROJECTS_TITLE: 'Projects',
-    PROJECTS_SUBTITLE: "Things I've built, broken, and fixed at 2am.",
+    PROJECTS_SUBTITLE: "Some of the projects I've worked on. A showcase of the web applications and tools I've been building recently.",
     SOURCE_CODE: 'Source Code',
     LIVE_DEMO: 'Live Demo',
     READ_MORE: 'Read More',
@@ -119,7 +119,7 @@ export const TRANSLATIONS = {
 
     // Projects Page
     PROJECTS_TITLE: 'Proyectos',
-    PROJECTS_SUBTITLE: 'Cosas que he construido, roto y arreglado a las 2am.',
+    PROJECTS_SUBTITLE: 'Algunos de los proyectos en los que he trabajado. Una muestra de las aplicaciones web y herramientas que he estado construyendo recientemente.',
     SOURCE_CODE: 'Código fuente',
     LIVE_DEMO: 'Demo en vivo',
     READ_MORE: 'Leer más',

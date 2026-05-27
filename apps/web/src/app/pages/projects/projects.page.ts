@@ -18,7 +18,7 @@ export default class ProjectsPage {
   projectService = inject(ProjectService);
   private platformId = inject(PLATFORM_ID);
 
-  viewMode = signal<'grid' | 'list'>('grid');
+  viewMode = signal<'grid' | 'list'>('list');
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {

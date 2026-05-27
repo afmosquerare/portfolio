@@ -1,19 +1,19 @@
 <app-language-toggle />
 <main class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-  <h1 #heroTitle class="text-7xl md:text-8xl font-semibold tracking-tighter mb-6">
+  <h1 #heroTitle class="text-7xl md:text-8xl  font-semibold tracking-tighter mb-6">
     {{ langService.t().HOME_TITLE }}
   </h1>
 
-  <p #heroSubtitle class="max-w-4xl text-2xl md:text-[30px] leading-tight mb-12"
+  <p #heroSubtitle class="max-w-4xl text-2xl  md:text-[30px] leading-tight mb-12"
     [innerHTML]="langService.t().HOME_SUBTITLE">
   </p>
 
-  <div class="flex flex-col sm:flex-row gap-4 items-center">
-    <button #heroButton routerLink="/projects" class="btn btn-primary  font-bold text-lg hover:scale-102">
+  <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto  sm:max-w-none">
+    <button #heroButton routerLink="/projects" class="btn btn-primary w-full sm:w-auto text-lg hover:scale-102">
       {{ langService.t().HOME_BTN_WORK }}
       <span class="icon-[lucide--arrow-right]"></span>
     </button>
-    <button #heroButton routerLink="/contact" class="btn btn-outline font-bold text-lg hover:bg-white/5">
+    <button #heroButton routerLink="/contact" class="btn btn-outline w-full sm:w-auto text-lg hover:bg-white/5">
       {{ langService.t().HOME_BTN_CONTACT }}
     </button>
   </div>

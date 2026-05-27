@@ -13,29 +13,23 @@ import { Component, input } from '@angular/core';
     <div class="skeleton w-full h-full rounded-none opacity-20"></div>
   </div>
   
-  <!-- Content Skeleton -->
   <div class="p-6 md:p-8 grow flex flex-col gap-4">
-    <!-- Badges Skeleton -->
     <div class="flex flex-wrap items-center gap-2 mb-2">
       <div class="skeleton h-6 w-16 rounded-full opacity-30"></div>
       <div class="skeleton h-6 w-20 rounded-full opacity-30"></div>
       <div class="skeleton h-6 w-14 rounded-full opacity-30"></div>
     </div>
     
-    <!-- Title Skeleton -->
     <div class="skeleton h-8 w-3/4 rounded-lg mb-1 opacity-40"></div>
     
-    <!-- Description Skeleton -->
     <div class="space-y-2 mb-4">
       <div class="skeleton h-4 w-full rounded-lg opacity-20"></div>
       <div class="skeleton h-4 w-full rounded-lg opacity-20"></div>
       <div class="skeleton h-4 w-2/3 rounded-lg opacity-20"></div>
     </div>
 
-    <!-- Read More Skeleton -->
     <div class="skeleton h-4 w-24 rounded-lg mb-6 opacity-30"></div>
     
-    <!-- Buttons Skeleton -->
     <div class="mt-auto flex flex-col lg:flex-row gap-3">
       <div class="skeleton h-12 flex-1 rounded-lg opacity-20"></div>
       <div class="skeleton h-12 flex-1 rounded-lg opacity-20"></div>
