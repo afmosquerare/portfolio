@@ -57,7 +57,8 @@ export default class Projects implements OnInit {
     imageUrl: [''],
     githubUrl: [''],
     demoUrl: [''],
-    isVisible: [true]
+    isVisible: [true],
+    order: [0, Validators.required]
   });
 
   ngOnInit() {
@@ -78,7 +79,7 @@ export default class Projects implements OnInit {
   openModal() {
     this.editingId.set(null);
     this.selectedTechIds.set([]);
-    this.projectForm.reset({ isVisible: true });
+    this.projectForm.reset({ isVisible: true, order: 0 });
     this.modal().open();
   }
 
@@ -94,7 +95,8 @@ export default class Projects implements OnInit {
       imageUrl: project.imageUrl || '',
       githubUrl: project.githubUrl || '',
       demoUrl: project.demoUrl || '',
-      isVisible: project.isVisible
+      isVisible: project.isVisible,
+      order: project.order || 0
     });
 
     this.selectedTechIds.set(project.technologies?.map((t: any) => t.id) || []);
@@ -103,7 +105,7 @@ export default class Projects implements OnInit {
   }
 
   closeModal() {
-    this.projectForm.reset({ isVisible: true });
+    this.projectForm.reset({ isVisible: true, order: 0 });
     this.modal().close();
   }
 
@@ -129,7 +131,7 @@ export default class Projects implements OnInit {
       githubUrl: formValue.githubUrl || undefined,
       demoUrl: formValue.demoUrl || undefined,
       isVisible: formValue.isVisible || false,
-      order: 0,
+      order: formValue.order ?? 0,
       projectTranslations: [
         { languageCode: 'en', title: formValue.titleEn!, description: formValue.descriptionEn! },
         { languageCode: 'es', title: formValue.titleEs!, description: formValue.descriptionEs! }

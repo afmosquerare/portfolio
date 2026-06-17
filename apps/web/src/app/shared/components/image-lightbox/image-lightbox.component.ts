@@ -6,7 +6,7 @@ import { Component, input, model } from '@angular/core';
   template: `
     <dialog class="modal" [class.modal-open]="isOpen()">
       <button (click)="isOpen.set(false)"
-        class="btn btn-circle btn-ghost fixed right-4 top-4 md:right-8 md:top-8 z-50 text-white bg-black/50 hover:bg-black/80 border border-white/10 backdrop-blur-sm">✕</button>
+        class="btn-md cursor-pointer btn-circle  fixed right-4 top-4 md:right-8 md:top-8 z-50 text-white bg-black/50 hover:bg-black/80 border border-white/10 backdrop-blur-sm">✕</button>
       <div
         class="modal-box bg-transparent shadow-none max-w-6xl w-full p-0 relative flex items-center justify-center h-full">
         <img [src]="imageUrl()" [alt]="altText()"

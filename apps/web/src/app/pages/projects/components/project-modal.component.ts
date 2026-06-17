@@ -9,7 +9,7 @@ import { LanguageService } from '../../../shared/services/language.service';
     <dialog class="modal" [class.modal-open]="isOpen()">
       <div class="modal-box w-[calc(100%-2rem)] max-w-4xl max-h-[calc(100vh-4rem)] bg-base-200 border border-white/10 shadow-2xl relative p-0 overflow-hidden flex flex-col rounded-2xl">
         <button (click)="isOpen.set(false)"
-          class="btn btn-md p-0 btn-circle btn-ghost absolute right-3 top-3 sm:right-4 sm:top-4 z-20 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm border-none">✕</button>
+          class="btn-md cursor-pointer p-0 btn-circle  absolute right-3 top-3 sm:right-4 sm:top-4 z-20 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm border-none">✕</button>
         <div class="overflow-y-auto overflow-x-hidden flex-1 scrollbar-thin scrollbar-thumb-base-content/20">
           <img [src]="project().imageUrl" [alt]="langService.currentLang() === 'en' ? project().titleEn : project().titleEs"
             class="w-full h-56 sm:h-80 md:h-96 object-cover object-center" />
@@ -18,18 +18,20 @@ import { LanguageService } from '../../../shared/services/language.service';
 
           <p class="py-4 text-base-content/80 leading-relaxed text-base sm:text-lg whitespace-pre-line">{{ langService.currentLang() === 'en' ? project().descriptionEn : project().descriptionEs }}</p>
           
-          <div class="modal-action mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 sm:justify-end">
-            @if (project().sourceCodeUrl) {
-              <a [href]="project().sourceCodeUrl" target="_blank" class="btn btn-outline uppercase tracking-widest w-full sm:w-auto">
-                <span class="icon-[lucide--code-2]"></span> {{ langService.t().SOURCE_CODE }}
-              </a>
-            }
-            @if (project().liveDemoUrl) {
-              <a [href]="project().liveDemoUrl" target="_blank" class="btn btn-primary uppercase tracking-widest w-full sm:w-auto">
-                {{ langService.t().LIVE_DEMO }} <span class="icon-[lucide--arrow-right]"></span>
-              </a>
-            }
-          </div>
+    <div class="mt-6 flex flex-col md:flex-row gap-3 justify-end">
+      @if (project().liveDemoUrl) {
+      <a [href]="project().liveDemoUrl" target="_blank"
+        class=" btn btn-primary tracking-widest">
+        {{ langService.t().LIVE_DEMO }} <span class="icon-[lucide--arrow-right]"></span>
+      </a>
+      }
+      @if (project().sourceCodeUrl) {
+      <a [href]="project().sourceCodeUrl" target="_blank"
+        class=" btn btn-outline tracking-widest ">
+        <span class="icon-[lucide--code-2]"></span> {{ langService.t().SOURCE_CODE }}
+      </a>
+      }
+    </div>
           </div>
         </div>
       </div>

@@ -153,8 +153,15 @@
           <input type="url" formControlName="demoUrl" placeholder="https://mi-proyecto.com"
             class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white" />
         </div>
+        <div class="form-control w-full">
+          <label class="label"><span class="label-text text-base-content/70">Display Order</span></label>
+          <input type="number" formControlName="order" placeholder="0"
+            class="input input-bordered w-full bg-base-300 border-white/10 focus:border-primary text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            [class.input-error]="formUtils.isValidField(projectForm, 'order')" />
+          <error-message class="mt-1" [control]="projectForm.controls.order" />
+        </div>
 
-        <div class="form-control w-fit mt-2">
+        <div class="form-control w-fit mt-7">
           <label class="cursor-pointer label gap-4">
             <span class="label-text text-base-content/70">Visible to public</span>
             <input type="checkbox" formControlName="isVisible" class="toggle toggle-primary" />
