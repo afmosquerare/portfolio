@@ -6,25 +6,20 @@ import { LanguageService } from '../../../shared/services/language.service';
   standalone: true,
   template: `
     <section>
-      <h2 class="text-4xl font-bold tracking-tighter mb-12 flex items-center gap-3">
+      <p class="font-mono text-xs uppercase tracking-[0.25em] text-primary mb-6">
         {{ langService.t().ABOUT_TECH }}
-      </h2>
+      </p>
 
-      <div class="space-y-16">
+      <div class="flex flex-col">
         @for (category of stackCategories; track $index) {
-        <div class="group cursor-default">
-          <div class="border-b-2 border-primary/30 md:border-base-content/10 pb-4 mb-8 transition-colors duration-500 md:group-hover:border-primary/50">
-            <h3 class="text-xl font-medium tracking-widest text-base-content/90 md:text-base-content/50 uppercase transition-colors duration-500 md:group-hover:text-base-content/90">{{ category.title }}</h3>
-          </div>
-          
-          <div class="flex flex-wrap gap-x-12 gap-y-10">
+        <div class="grid md:grid-cols-[170px_1fr] gap-x-6 gap-y-4 py-6 border-t border-base-content/10 last:border-b">
+          <h3 class="font-mono text-xs uppercase tracking-[0.16em] text-base-content/45 pt-0.5">{{ category.title }}</h3>
+          <div class="flex flex-wrap gap-x-7 gap-y-3">
             @for (tech of category.items; track $index) {
-            <div class="flex flex-col items-center gap-4 md:hover:-translate-y-2 transition-transform duration-300">
-              <span [class]="tech.icon + ' text-5xl sm:text-6xl ' + tech.color + ' transition-all duration-500 opacity-80 sm:group-hover:scale-110'"></span>
-              <span class="text-sm font-semibold tracking-wide text-base-content/70 md:text-base-content/60 md:group-hover:text-base-content transition-colors duration-500">
-                {{ tech.name }}
-              </span>
-            </div>
+            <span class="inline-flex items-center gap-2 text-sm font-medium text-base-content/75 hover:text-base-content transition-colors">
+              <span [class]="tech.icon + ' text-base ' + tech.color"></span>
+              {{ tech.name }}
+            </span>
             }
           </div>
         </div>

@@ -11,7 +11,7 @@ import { ProjectModalComponent } from './project-modal.component';
   template: `
 <div class="project-card group"
   [class.flex-col]="true" [class.md:flex-row]="view() === 'list'">
-  <div class="relative overflow-hidden shrink-0 border-white/5 cursor-pointer" [class.w-full]="true"
+  <div class="relative overflow-hidden shrink-0 border-base-content/5 cursor-pointer" [class.w-full]="true"
     [class.md:w-2/5]="view() === 'list'" [class.border-b]="view() === 'grid'" [class.md:border-b-0]="view() === 'list'"
     [class.md:border-r]="view() === 'list'" [class.aspect-[16/10]]="view() === 'grid'" (click)="isFullscreen.set(true)">
     <img [src]="project().imageUrl" [alt]="langService.currentLang() === 'en' ? project().titleEn : project().titleEs"
@@ -21,31 +21,29 @@ import { ProjectModalComponent } from './project-modal.component';
   <div class="p-6 md:p-8 grow flex flex-col">
     <div class="flex flex-wrap items-center gap-2 mb-4">
       @for (tech of project().technologies; track tech.name) {
-      <span class="badge ">
-        {{ tech.name }}
-      </span>
+      <span class="badge">{{ tech.name }}</span>
       }
     </div>
-    <h3 class="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+    <h3 class="font-display text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
       {{ langService.currentLang() === 'en' ? project().titleEn : project().titleEs }}
     </h3>
     <p class="text-base-content/50 leading-relaxed mb-3 text-base line-clamp-3">
       {{ langService.currentLang() === 'en' ? project().descriptionEn : project().descriptionEs }}
     </p>
     <button (click)="isModalOpen.set(true)"
-      class="text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs self-start mb-6 cursor-pointer transition-colors">
+      class="font-mono text-primary hover:text-primary/80 font-semibold uppercase tracking-widest text-xs self-start mb-6 cursor-pointer transition-colors">
       {{ langService.t().READ_MORE }}
     </button>
     <div class="mt-auto flex flex-col lg:flex-row gap-3">
       @if (project().liveDemoUrl) {
       <a [href]="project().liveDemoUrl" target="_blank"
-        class="lg:flex-1 btn btn-primary tracking-widest">
+        class="lg:flex-1 btn btn-primary">
         {{ langService.t().LIVE_DEMO }} <span class="icon-[lucide--arrow-right]"></span>
       </a>
       }
       @if (project().sourceCodeUrl) {
       <a [href]="project().sourceCodeUrl" target="_blank"
-        class="lg:flex-1 btn btn-outline tracking-widest ">
+        class="lg:flex-1 btn btn-outline">
         <span class="icon-[lucide--code-2]"></span> {{ langService.t().SOURCE_CODE }}
       </a>
       }

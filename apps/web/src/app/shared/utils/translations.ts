@@ -8,23 +8,23 @@ export const TRANSLATIONS = {
 
     // Home Page
     HOME_TITLE: 'Hey, I\'m Andrés Rengifo',
-    HOME_SUBTITLE: 'A full-stack developer focusing in <span class="text-[#e07d96] font-bold">Angular</span>, <span class="text-[#b96ff4] font-bold">.NET Core</span>, & <span class="text-[#9197ff] font-bold">Clean Code</span>.',
+    HOME_SUBTITLE: 'A full-stack developer focusing in <span class="text-[#eb459e] font-bold">Angular</span>, <span class="text-[#5865f2] font-bold">.NET Core</span>, & <span class="text-[#57f287] font-bold">Clean Code</span>.',
     HOME_BTN_WORK: 'View My Work',
     HOME_BTN_CONTACT: 'Contact Me',
 
     // About Page
-    ABOUT_TITLE: 'About',
+    ABOUT_TITLE: 'Get to Know Me',
     ABOUT_SUBTITLE: "My name is Andrés Rengifo and I'm a full-stack software developer from Medellín, Colombia, with experience shipping scalable and user-centered applications.",
     ABOUT_P1: "I'm currently studying IT Engineering and actively looking for my next role—whether it's remote, hybrid, or on-site. Specialized in <strong>Angular</strong> and <strong>.NET Core</strong>, I am passionate about creating efficient, clean solutions and always strive to apply SOLID principles in every line of code.",
     ABOUT_P2: "Outside of code, I enjoy playing basketball, exploring hiking trails, and playing video games. Lately, I've been dedicating most of my time to improving my software engineering skills and training on the court.",
     ABOUT_CV: 'Download CV',
-    ABOUT_TECH: 'Tech Stack',
+    ABOUT_TECH: 'What I Work With',
     TECH_FRONTEND: 'Frontend',
     TECH_BACKEND: 'Backend',
     TECH_TESTING: 'Testing & QA',
     TECH_DATABASE: 'Databases & Cloud',
     TECH_TOOLS: 'Tools',
-    ABOUT_EXP_TITLE: 'Experience',
+    ABOUT_EXP_TITLE: 'Where I\'ve Worked',
     EXPERIENCES: [
       {
         role: 'Full Stack Developer | Freelance',
@@ -47,18 +47,20 @@ export const TRANSLATIONS = {
     ],
 
     // Projects Page
-    PROJECTS_TITLE: 'Projects',
+    PROJECTS_TITLE: 'What I\'ve Built',
     PROJECTS_SUBTITLE: "Some of the projects I've worked on. A showcase of the web applications and tools I've been building recently.",
     SOURCE_CODE: 'Source Code',
     LIVE_DEMO: 'Live Demo',
     READ_MORE: 'Read More',
     CLOSE: 'Close',
-    NO_PROJECTS: 'No projects available.',
+    NO_PROJECTS: 'Nothing here yet — check back soon.',
 
     // Contact Page
-    CONTACT_TITLE: 'Contact',
+    CONTACT_TITLE: 'Let\'s Talk',
     CONTACT_SUBTITLE: "I'm currently open to new opportunities—whether it's a full-time role, freelance work, or an interesting collaboration. Fill out the form or reach out directly by ",
     CONTACT_EMAIL_LINK: 'sending an email.',
+    CONTACT_CHANNELS_LABEL: 'Or find me here',
+    CONTACT_EMAIL_CTA: 'Email',
     FORM_NAME: 'Name',
     FORM_EMAIL: 'Email',
     FORM_MESSAGE: 'Message',
@@ -79,23 +81,23 @@ export const TRANSLATIONS = {
 
     // Home Page
     HOME_TITLE: 'Hola, soy Andrés Rengifo',
-    HOME_SUBTITLE: 'Un desarrollador full-stack enfocado en <span class="text-[#e07d96] font-bold">Angular</span>, <span class="text-[#b96ff4] font-bold">.NET Core</span> y <span class="text-[#9197ff] font-bold">Código Limpio</span>.',
+    HOME_SUBTITLE: 'Un desarrollador full-stack enfocado en <span class="text-[#eb459e] font-bold">Angular</span>, <span class="text-[#5865f2] font-bold">.NET Core</span> y <span class="text-[#57f287] font-bold">Código Limpio</span>.',
     HOME_BTN_WORK: 'Ver mi trabajo',
     HOME_BTN_CONTACT: 'Contáctame',
 
     // About Page
-    ABOUT_TITLE: 'Sobre mí',
+    ABOUT_TITLE: 'Conóceme',
     ABOUT_SUBTITLE: 'Mi nombre es Andrés Rengifo y soy un desarrollador de software full-stack de Medellín, Colombia, con experiencia en aplicaciones escalables y centradas en el usuario.',
     ABOUT_P1: 'Actualmente estudio Ingeniería Informática y busco activamente mi próximo rol, ya sea remoto, híbrido o presencial. Especializado en <strong>Angular</strong> y <strong>.NET Core</strong>, me apasiona crear soluciones limpias y eficientes, aplicando principios SOLID en cada línea de código.',
     ABOUT_P2: 'Fuera del código, disfruto jugar baloncesto, explorar senderos y jugar videojuegos. Últimamente, he dedicado la mayor parte de mi tiempo a mejorar mis habilidades de ingeniería de software y a entrenar en la cancha.',
     ABOUT_CV: 'Descargar CV',
-    ABOUT_TECH: 'Tecnologías',
+    ABOUT_TECH: 'Con qué trabajo',
     TECH_FRONTEND: 'Frontend',
     TECH_BACKEND: 'Backend',
     TECH_TESTING: 'Pruebas y QA',
     TECH_DATABASE: 'Bases de Datos y Nube',
     TECH_TOOLS: 'Herramientas',
-    ABOUT_EXP_TITLE: 'Experiencia',
+    ABOUT_EXP_TITLE: 'Dónde he trabajado',
     EXPERIENCES: [
       {
         role: 'Desarrollador Full Stack | Freelance',
@@ -118,18 +120,20 @@ export const TRANSLATIONS = {
     ],
 
     // Projects Page
-    PROJECTS_TITLE: 'Proyectos',
+    PROJECTS_TITLE: 'Lo que he construido',
     PROJECTS_SUBTITLE: 'Algunos de los proyectos en los que he trabajado. Una muestra de las aplicaciones web y herramientas que he estado construyendo recientemente.',
     SOURCE_CODE: 'Código fuente',
     LIVE_DEMO: 'Demo en vivo',
     READ_MORE: 'Leer más',
     CLOSE: 'Cerrar',
-    NO_PROJECTS: 'No hay proyectos disponibles.',
+    NO_PROJECTS: 'Aún no hay nada aquí — vuelve pronto.',
 
     // Contact Page
-    CONTACT_TITLE: 'Contacto',
+    CONTACT_TITLE: 'Hablemos',
     CONTACT_SUBTITLE: 'Actualmente estoy abierto a nuevas oportunidades—ya sea un rol a tiempo completo, trabajo freelance o una colaboración interesante. Llena el formulario o contáctame directamente ',
     CONTACT_EMAIL_LINK: 'enviando un correo.',
+    CONTACT_CHANNELS_LABEL: 'O encuentrame aquí',
+    CONTACT_EMAIL_CTA: 'Correo',
     FORM_NAME: 'Nombre',
     FORM_EMAIL: 'Correo',
     FORM_MESSAGE: 'Mensaje',

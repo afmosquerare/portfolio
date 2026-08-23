@@ -33,8 +33,8 @@ export class ProjectService {
           ...p,
           titleEn: enTranslation?.title || 'No Title',
           titleEs: esTranslation?.title || 'Sin Título',
-          descriptionEn: enTranslation?.description || 'No description available.',
-          descriptionEs: esTranslation?.description || 'No hay descripción disponible.',
+          descriptionEn: enTranslation?.description || 'No description provided.',
+          descriptionEs: esTranslation?.description || 'Sin descripción.',
           sourceCodeUrl: p.githubUrl,
           liveDemoUrl: p.demoUrl
         };

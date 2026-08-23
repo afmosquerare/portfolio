@@ -5,42 +5,39 @@ import { LanguageService } from '../../../shared/services/language.service';
   selector: 'about-hero',
   standalone: true,
   template: `
-    <header class="mb-8">
-      <div class="flex justify-between items-end mb-4">
-        <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter text-base-content leading-none">
+    <div class="flex justify-between gap-2 pb-8 mb-10 border-b border-base-content/10">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.25em] text-primary">
           {{ langService.t().ABOUT_TITLE }}
-        </h1>
-        <div class="flex items-center gap-4 pb-2 pr-2">
-          <a [href]="linkedinLink" target="_blank"
-            class="text-base-content/60 hover:text-primary transition-colors hover:scale-110 duration-200"
-            aria-label="LinkedIn">
-            <span class="icon-[mdi--linkedin] text-4xl"></span>
-          </a>
-          <a [href]="githubLink" target="_blank"
-            class="text-base-content/60 hover:text-primary transition-colors hover:scale-110 duration-200"
-            aria-label="GitHub">
-            <span class="icon-[mdi--github] text-4xl"></span>
-          </a>
-        </div>
+        </p>
       </div>
-      <p class="text-base-content/60 text-xl font-light leading-relaxed ">
-        {{ langService.t().ABOUT_SUBTITLE }}
-      </p>
-    </header>
 
-    <section class="mb-14 grid gap-6 items-start">
-      <div class="md:col-span-2 space-y-4 text-base-content/60 text-lg leading-relaxed">
-        <p [innerHTML]="langService.t().ABOUT_P1"></p>
-        <p [innerHTML]="langService.t().ABOUT_P2"></p>
-      </div>
-      <div class="flex items-start">
-        <a href="/cv.pdf" target="_blank"
-          class="btn btn-primary w-full sm:w-auto">
-          <span class="icon-[lucide--download] text-xl"></span>
-          {{ langService.t().ABOUT_CV }}
+      <div class="flex items-center gap-4">
+        <a [href]="linkedinLink" target="_blank"
+          class="text-base-content/60 hover:text-primary transition-colors hover:scale-110 duration-200"
+          aria-label="LinkedIn">
+          <span class="icon-[mdi--linkedin] text-2xl"></span>
+        </a>
+        <a [href]="githubLink" target="_blank"
+          class="text-base-content/60 hover:text-primary transition-colors hover:scale-110 duration-200"
+          aria-label="GitHub">
+          <span class="icon-[mdi--github] text-2xl"></span>
         </a>
       </div>
-    </section>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 text-base-content/60 text-lg leading-relaxed mb-8">
+      <div class="flex flex-col gap-4">
+        <p>{{ langService.t().ABOUT_SUBTITLE }}</p>
+        <p [innerHTML]="langService.t().ABOUT_P1"></p>
+      </div>
+      <p [innerHTML]="langService.t().ABOUT_P2"></p>
+    </div>
+
+    <a href="/cv.pdf" target="_blank" class="btn btn-primary w-fit mb-14">
+      <span class="icon-[lucide--download] text-xl"></span>
+      {{ langService.t().ABOUT_CV }}
+    </a>
   `
 })
 export class AboutHeroComponent {

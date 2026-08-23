@@ -1,62 +1,85 @@
-<section class="max-w-2xl mx-auto">
-  <header class="mb-8">
-    <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter text-base-content mb-6 leading-none">
+<section class="grid md:grid-cols-[1fr_1.15fr] gap-14 lg:gap-20 items-start max-w-5xl mx-auto">
+  <div>
+    <h1 class="font-display uppercase text-4xl md:text-5xl font-bold tracking-tight text-base-content mb-6 leading-[0.95]">
       {{ langService.t().CONTACT_TITLE }}
     </h1>
-    <p class="text-base-content/60 text-xl font-light leading-relaxed">
+    <p class="text-base-content/60 text-lg leading-relaxed mb-12">
       {{ langService.t().CONTACT_SUBTITLE }} <a (click)="openEmail($event)"
         class="text-primary hover:underline font-medium cursor-pointer">{{ langService.t().CONTACT_EMAIL_LINK }}</a>
     </p>
-  </header>
 
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-6">
-    <div class="absolute left-[-9999px] top-[-9999px]" aria-hidden="true">
-      <label for="website_url">Website</label>
-      <input type="text" id="website_url" formControlName="website_url" tabindex="-1" autocomplete="off" />
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-base-content/40 mb-5">
+      {{ langService.t().CONTACT_CHANNELS_LABEL }}
+    </p>
+    <div class="flex flex-col gap-1 -ml-3">
+      <a (click)="openEmail($event)" href="#"
+        class="group flex items-center gap-4 px-3 py-3 rounded-md text-base-content/75 hover:text-base-content hover:bg-base-content/[0.04] transition-colors cursor-pointer">
+        <span class="icon-[lucide--mail] text-xl text-primary"></span>
+        <span class="font-medium">{{ langService.t().CONTACT_EMAIL_CTA }}</span>
+        <span class="icon-[lucide--arrow-up-right] ml-auto text-base opacity-0 group-hover:opacity-100 transition-opacity"></span>
+      </a>
+      <a [href]="linkedinLink" target="_blank"
+        class="group flex items-center gap-4 px-3 py-3 rounded-md text-base-content/75 hover:text-base-content hover:bg-base-content/[0.04] transition-colors">
+        <span class="icon-[mdi--linkedin] text-xl text-primary"></span>
+        <span class="font-medium">LinkedIn</span>
+        <span class="icon-[lucide--arrow-up-right] ml-auto text-base opacity-0 group-hover:opacity-100 transition-opacity"></span>
+      </a>
+      <a [href]="githubLink" target="_blank"
+        class="group flex items-center gap-4 px-3 py-3 rounded-md text-base-content/75 hover:text-base-content hover:bg-base-content/[0.04] transition-colors">
+        <span class="icon-[mdi--github] text-xl text-primary"></span>
+        <span class="font-medium">GitHub</span>
+        <span class="icon-[lucide--arrow-up-right] ml-auto text-base opacity-0 group-hover:opacity-100 transition-opacity"></span>
+      </a>
     </div>
+  </div>
 
+  <div class="border border-base-content/10 bg-base-200/30 p-6 md:p-8">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-6">
+      <div class="absolute left-[-9999px] top-[-9999px]" aria-hidden="true">
+        <label for="website_url">Website</label>
+        <input type="text" id="website_url" formControlName="website_url" tabindex="-1" autocomplete="off" />
+      </div>
 
+      <div class="form-control w-full">
+        <label class="label px-0 pt-0 pb-1">
+          <span class="label-text font-mono text-[11px] text-base-content/45 uppercase tracking-[0.14em]">{{ langService.t().FORM_NAME }}</span>
+        </label>
+        <input type="text" formControlName="name" [placeholder]="langService.t().FORM_NAME_PLACEHOLDER"
+          class="input input-bordered bg-base-100/60 w-full rounded-md focus:border-primary transition-colors h-12"
+          [class.input-error]="isValidField('name')" />
+        <error-message [control]="contactForm.controls.name" />
+      </div>
 
-    <div class="form-control w-full">
-      <label class="label px-0 pt-0 pb-1">
-        <span class="label-text text-base-content/80 font-medium tracking-wide">{{ langService.t().FORM_NAME }}</span>
-      </label>
-      <input type="text" formControlName="name" [placeholder]="langService.t().FORM_NAME_PLACEHOLDER"
-        class="input input-bordered bg-base-200/30 w-full rounded-xl focus:border-primary transition-colors h-12"
-        [class.input-error]="isValidField('name')" />
-      <error-message [control]="contactForm.controls.name" />
-    </div>
+      <div class="form-control w-full">
+        <label class="label px-0 pt-0 pb-1">
+          <span class="label-text font-mono text-[11px] text-base-content/45 uppercase tracking-[0.14em]">{{ langService.t().FORM_EMAIL }}</span>
+        </label>
+        <input type="email" formControlName="email" [placeholder]="langService.t().FORM_EMAIL_PLACEHOLDER"
+          class="input input-bordered bg-base-100/60 w-full rounded-md focus:border-primary transition-colors h-12"
+          [class.input-error]="isValidField('email')" />
+        <error-message [control]="contactForm.controls.email" />
+      </div>
 
-    <div class="form-control w-full">
-      <label class="label px-0 pt-0 pb-1">
-        <span class="label-text text-base-content/80 font-medium tracking-wide">{{ langService.t().FORM_EMAIL }}</span>
-      </label>
-      <input type="email" formControlName="email" [placeholder]="langService.t().FORM_EMAIL_PLACEHOLDER"
-        class="input input-bordered bg-base-200/30 w-full rounded-xl focus:border-primary transition-colors h-12"
-        [class.input-error]="isValidField('email')" />
-      <error-message [control]="contactForm.controls.email" />
-    </div>
+      <div class="form-control w-full">
+        <label class="label px-0 pt-0 pb-1">
+          <span class="label-text font-mono text-[11px] text-base-content/45 uppercase tracking-[0.14em]">{{ langService.t().FORM_MESSAGE }}</span>
+        </label>
+        <textarea formControlName="body"
+          class="textarea textarea-bordered bg-base-100/60 h-36 w-full resize-none rounded-md focus:border-primary transition-colors text-base"
+          [class.textarea-error]="isValidField('body')"
+          [placeholder]="langService.t().FORM_MESSAGE_PLACEHOLDER"></textarea>
+        <error-message [control]="contactForm.controls.body" />
+      </div>
 
-    <div class="form-control w-full">
-      <label class="label px-0 pt-0 pb-1">
-        <span class="label-text text-base-content/80 font-medium tracking-wide">{{ langService.t().FORM_MESSAGE
-          }}</span>
-      </label>
-      <textarea formControlName="body"
-        class="textarea textarea-bordered bg-base-200/30 h-40 w-full resize-none rounded-xl focus:border-primary transition-colors text-base"
-        [class.textarea-error]="isValidField('body')"
-        [placeholder]="langService.t().FORM_MESSAGE_PLACEHOLDER"></textarea>
-      <error-message [control]="contactForm.controls.body" />
-    </div>
-
-    <button type="submit" [disabled]="isSubmitting()" class="btn btn-primary w-full ">
-      @if (isSubmitting()) {
-      <span class="loading loading-spinner"></span>
-      <span>{{ langService.t().FORM_SENDING }}</span>
-      } @else {
-      <span>{{ langService.t().FORM_SEND }}</span>
-      <span class="icon-[lucide--send] ml-2 text-xl"></span>
-      }
-    </button>
-  </form>
+      <button type="submit" [disabled]="isSubmitting()" class="btn btn-primary w-full">
+        @if (isSubmitting()) {
+        <span class="loading loading-spinner"></span>
+        <span>{{ langService.t().FORM_SENDING }}</span>
+        } @else {
+        <span>{{ langService.t().FORM_SEND }}</span>
+        <span class="icon-[lucide--send] ml-2 text-xl"></span>
+        }
+      </button>
+    </form>
+  </div>
 </section>

@@ -7,7 +7,7 @@ import { NotifierService } from './notifier.service';
     @if( notifierService.visible() ){
     <div
       role="alert"
-      class="flex justify-center fixed right-4 top-4 z-9999 items-center gap-3 rounded-xl px-4 py-3 shadow-lg transition-all duration-300 ease-out "
+      class="flex justify-center fixed right-4 top-4 z-9999 items-center gap-3 rounded-md px-4 py-3 shadow-lg transition-all duration-300 ease-out "
       [class.opacity-0]="!notifierService.visible()"
       [class.opacity-100]="notifierService.visible()"
       [class.translate-x-10]="!notifierService.visible()"

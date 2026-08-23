@@ -1,26 +1,26 @@
-<section class="mb-8">
-  <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter text-base-content mb-6 leading-none">
-    {{ langService.t().PROJECTS_TITLE }}
-  </h1>
-  <p class="text-base-content/60 text-lg font-light">
-    {{ langService.t().PROJECTS_SUBTITLE }}
-  </p>
-</section>
+<section class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-8 mb-10 border-b border-base-content/10">
 
-<section class="hidden md:flex flex-wrap items-center gap-6 mb-8">
+  <div>
+    <h1 class="font-display uppercase text-4xl md:text-5xl font-bold tracking-tight text-base-content leading-[0.95] mb-3">
+      {{ langService.t().PROJECTS_TITLE }}
+    </h1>
+    <p class="text-base-content/50 text-base max-w-md">
+      {{ langService.t().PROJECTS_SUBTITLE }}
+    </p>
+  </div>
   <app-view-toggle [(view)]="viewMode" />
 </section>
 
 <div [class.grid]="viewMode() === 'grid'" [class.grid-cols-1]="true" [class.md:grid-cols-2]="viewMode() === 'grid'"
   [class.gap-x-12]="true" [class.gap-y-16]="viewMode() === 'grid'" [class.flex]="viewMode() === 'list'"
   [class.flex-col]="viewMode() === 'list'" [class.gap-y-10]="viewMode() === 'list'">
-  
+
   @if (projectsResource.isLoading()) {
     @for (i of [1, 2, 3, 4]; track i) {
       <p-project-card-skeleton [view]="viewMode()" />
     }
   } @else if (projectsResource.value(); as projects) {
-    @for (project of projects; track project.id) {
+    @for (project of projects; track project.id; let i = $index) {
       @if (project.isVisible) {
         <p-project-card [view]="viewMode()" [project]="project" />
       }

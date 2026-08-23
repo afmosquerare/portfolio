@@ -19,6 +19,8 @@ export default class ContactPage {
   public langService = inject(LanguageService);
 
   isSubmitting = signal(false);
+  linkedinLink = 'https://www.linkedin.com/in/andr%C3%A9s-rengifo-331a26180/';
+  githubLink = 'https://github.com/afmosquerare';
 
   contactForm = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(2)]],

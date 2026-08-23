@@ -6,7 +6,7 @@ import { NotifierComponent } from '@notifications/notifier';
   selector: 'app-root',
   imports: [RouterOutlet, NotifierComponent],
   template: `
-  <router-outlet/> 
+  <router-outlet/>
   <notifier/>
   `,
 })

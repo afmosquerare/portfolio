@@ -4,24 +4,26 @@ import { Component, model } from '@angular/core';
   selector: 'app-view-toggle',
   standalone: true,
   template: `
-    <div class="flex items-center bg-base-200/40 backdrop-blur-md p-1 rounded-full border border-white/5 text-[10px] font-bold tracking-[0.2em] uppercase w-fit">
+    <div class="flex items-center gap-1 font-mono text-[10px] tracking-[0.2em] uppercase w-fit">
       <button
         (click)="updateView('grid')"
-        [class.bg-primary]="view() === 'grid'"
-        [class.text-primary-content]="view() === 'grid'"
-        [class.text-base-content]="view() === 'list'"
-        class="flex items-center gap-2 px-4 py-1.5 rounded-full transition-all cursor-pointer opacity-80 hover:opacity-100"
+        [class.text-primary]="view() === 'grid'"
+        [class.text-base-content]="view() !== 'grid'"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-md border-b-2 transition-colors cursor-pointer"
+        [class.border-primary]="view() === 'grid'"
+        [class.border-transparent]="view() !== 'grid'"
       >
-        <span class="icon-[lucide--layout-grid] text-lg"></span>
+        <span class="icon-[lucide--layout-grid] text-base"></span>
       </button>
       <button
         (click)="updateView('list')"
-        [class.bg-primary]="view() === 'list'"
-        [class.text-primary-content]="view() === 'list'"
-        [class.text-base-content]="view() === 'grid'"
-        class="flex items-center gap-2 px-4 py-1.5 rounded-full transition-all cursor-pointer opacity-80 hover:opacity-100"
+        [class.text-primary]="view() === 'list'"
+        [class.text-base-content]="view() !== 'list'"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-md border-b-2 transition-colors cursor-pointer"
+        [class.border-primary]="view() === 'list'"
+        [class.border-transparent]="view() !== 'list'"
       >
-        <span class="icon-[lucide--list] text-lg"></span>
+        <span class="icon-[lucide--list] text-base"></span>
       </button>
     </div>
   `

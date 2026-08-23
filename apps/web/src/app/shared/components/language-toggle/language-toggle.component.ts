@@ -5,22 +5,21 @@ import { LanguageService } from '../../services/language.service';
   selector: 'app-language-toggle',
   standalone: true,
   template: `
-    <div class="fixed top-6 right-6 z-[99] flex items-center bg-base-200/80 backdrop-blur-3xl p-1 rounded-full border border-white/5 text-xs font-bold uppercase shadow-2xl">
+    <div class="fixed top-6 right-6 md:right-10 z-[99] flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em]">
       <button
         (click)="setLang('en')"
-        [class.bg-primary]="langService.currentLang() === 'en'"
-        [class.text-primary-content]="langService.currentLang() === 'en'"
-        [class.text-base-content]="langService.currentLang() === 'es'"
-        class="flex items-center justify-center w-10 h-10 rounded-full transition-all cursor-pointer opacity-80 hover:opacity-100"
+        [class.opacity-100]="langService.currentLang() === 'en'"
+        [class.opacity-40]="langService.currentLang() === 'es'"
+        class="text-base-content transition-opacity duration-300 cursor-pointer"
       >
         EN
       </button>
+      <span class="text-base-content/20">/</span>
       <button
         (click)="setLang('es')"
-        [class.bg-primary]="langService.currentLang() === 'es'"
-        [class.text-primary-content]="langService.currentLang() === 'es'"
-        [class.text-base-content]="langService.currentLang() === 'en'"
-        class="flex items-center justify-center w-10 h-10 rounded-full transition-all cursor-pointer opacity-80 hover:opacity-100"
+        [class.opacity-100]="langService.currentLang() === 'es'"
+        [class.opacity-40]="langService.currentLang() === 'en'"
+        class="text-base-content transition-opacity duration-300 cursor-pointer"
       >
         ES
       </button>

@@ -1,20 +1,27 @@
 <app-language-toggle />
-<main class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-  <h1 #heroTitle class="text-7xl md:text-8xl  font-semibold tracking-tighter mb-6">
-    {{ langService.t().HOME_TITLE }}
-  </h1>
+<section class="relative isolate overflow-hidden min-h-screen max-w-6xl mx-auto px-6 md:px-10 py-24 flex flex-col justify-center">
 
-  <p #heroSubtitle class="max-w-4xl text-2xl  md:text-[30px] leading-tight mb-12"
-    [innerHTML]="langService.t().HOME_SUBTITLE">
-  </p>
+  <svg class="pointer-events-none absolute right-[-22rem] top-1/2 -translate-y-1/2 w-[1200px] h-[1200px] opacity-[0.22] hidden md:block -z-10" viewBox="0 0 1200 1200" fill="none" aria-hidden="true">
+    <circle cx="600" cy="600" r="560" stroke="var(--color-primary)" stroke-width="2" />
+    <circle cx="600" cy="600" r="380" stroke="var(--color-primary)" stroke-width="1" />
+  </svg>
 
-  <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto  sm:max-w-none">
-    <button #heroButton routerLink="/projects" class="btn btn-primary w-full sm:w-auto text-lg hover:scale-102">
-      {{ langService.t().HOME_BTN_WORK }}
-      <span class="icon-[lucide--arrow-right]"></span>
-    </button>
-    <button #heroButton routerLink="/contact" class="btn btn-outline w-full sm:w-auto text-lg hover:bg-white/5">
-      {{ langService.t().HOME_BTN_CONTACT }}
-    </button>
+  <div class="relative z-10">
+    <h1 #heroTitle class="font-display uppercase break-words text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-8">
+      {{ langService.t().HOME_TITLE }}
+    </h1>
+
+    <p #heroSubtitle class="max-w-xl text-xl md:text-2xl leading-snug mb-10" [innerHTML]="langService.t().HOME_SUBTITLE">
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+      <button #heroButton routerLink="/projects" class="btn btn-primary">
+        {{ langService.t().HOME_BTN_WORK }}
+        <span class="icon-[lucide--arrow-right]"></span>
+      </button>
+      <button #heroButton routerLink="/contact" class="btn btn-outline">
+        {{ langService.t().HOME_BTN_CONTACT }}
+      </button>
+    </div>
   </div>
-</main>
+</section>

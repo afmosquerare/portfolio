@@ -1,19 +1,21 @@
 <nav
-  class="hidden md:flex fixed z-[99] top-6 left-1/2 -translate-x-1/2 pointer-events-auto bg-base-200/80 backdrop-blur-3xl rounded-full px-2 py-2 border border-white/5 gap-1 shadow-2xl">
-  @for (item of items; track $index) {
-  <a class="flex items-center text-base-content/70 hover:text-base-content transition-colors text-sm font-medium px-5 py-2 rounded-full duration-300"
-    routerLinkActive="bg-primary text-primary-content hover:bg-primary/90 " [routerLink]="item.path">
-    {{ item.label }}
-  </a>
-  }
+  class="hidden md:flex fixed z-[99] top-[10px] left-[10px] right-[10px] justify-center bg-base-100/90 backdrop-blur-xl border border-base-content/10 rounded-md">
+  <div class="flex items-center gap-10 max-w-6xl w-full px-6 py-4">
+    @for (item of items; track $index) {
+    <a class="font-mono text-xs uppercase tracking-[0.14em] text-base-content/50 hover:text-base-content transition-colors duration-300 pb-1 border-b-2 border-transparent"
+      routerLinkActive="text-base-content border-primary" [routerLink]="item.path">
+      {{ item.label }}
+    </a>
+    }
+  </div>
 </nav>
 
-<div class="dock md:hidden bg-base-200/90 backdrop-blur-3xl border-t border-white/5 z-[99]">
+<div class="dock md:hidden bg-base-200/90 backdrop-blur-3xl border-t border-base-content/5 z-[99]">
   @for (item of items; track $index) {
   <a [routerLink]="item.path" routerLinkActive="dock-active text-primary"
     class="text-base-content/70 hover:text-base-content transition-colors">
     <span [class]="item.icon + ' text-2xl mb-1'"></span>
-    <span class="dock-label text-[10px] uppercase font-bold tracking-widest">{{ item.label }}</span>
+    <span class="dock-label font-mono text-[10px] uppercase font-semibold tracking-widest">{{ item.label }}</span>
   </a>
   }
 </div>
